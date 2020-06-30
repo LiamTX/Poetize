@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/Signup.css">
+    <link rel="stylesheet" href="/styles/global.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+    <title>Signup</title>
+</head>
+<body>
+    <div id="pages">
+        <header>
+            <img src="#" alt="Poetize">
+        </header>
+        
+        <form>
+            <a href="/login">Voltar</a>
+            <fieldset>
+                <legend>
+                    <h2>Insira seus dados para efetuar o cadastro</h2>
+                </legend>
+
+                <div class="field">
+                    <label for="nome">Nome: </label>
+                    <input type="text" name="nome" required autocomplete="off">
+                </div>
+                <div class="field">
+                    <label for="email">Email: </label>
+                    <input type="text" name="email" required autocomplete="off">
+                </div>
+                <div class="field">
+                    <label for="pass">Senha: </label>
+                    <input type="password" name="pass" required autocomplete="off">
+                </div>
+                <button type="button" onclick="userRegister()">Cadastrar</button>
+            </fieldset>
+        </form>
+    </div>
+
+<script src="/scripts/Signup.js"></script>
+</body>
+</html>

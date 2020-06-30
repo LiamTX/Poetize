@@ -1,0 +1,29 @@
+{
+  "name": "poetizefront",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LiamTX/Poetize.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LiamTX/Poetize/issues"
+  },
+  "homepage": "https://github.com/LiamTX/Poetize#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.0",
+    "nodemon": "^2.0.4",
+    "nunjucks": "^3.2.1",
+    "sweetalert": "^2.1.2"
+  }
+}

@@ -1,0 +1,45 @@
+
+#page-poem{
+    width: 90%;
+    max-width: 1100px;
+    
+    margin: 0 auto;
+}
+
+header{
+    margin-top: 48px;
+    /*Todos Ficam na mesma "linha" */
+    display: flex ;
+    align-items: center;
+    /*espaçamento dos elementos*/
+    justify-content: space-between;
+}
+
+header button{
+    width: 200px;
+    height: 30px;
+    background-color: var(--primary-color);
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    border: 0;
+    /* margin-top: 40px;  */
+    transition: background-color 500ms;
+    cursor: pointer;
+}
+
+#btnLogOut{
+    width: 100px;
+}
+
+.poemCard{
+    margin-top: 48px;
+
+    border: solid;
+
+    border-radius: 8px;
+
+    background-color: gainsboro;
+
+}

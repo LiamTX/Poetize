@@ -1,0 +1,35 @@
+:root{
+    --primary-color: #572766;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+};
+
+body{
+    background-color: #f0f0f5;
+};
+
+* a{
+    text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6{
+    color: #322153;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#pages{
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+};
+
+@media(max-width: 900px){
+    #page-feed .cards{
+        grid-template-columns: 1fr;
+    }
+}

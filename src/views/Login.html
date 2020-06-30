@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/Login.css">
+    <link rel="stylesheet" href="/styles/global.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+    <title>Login</title>
+</head>
+<body>
+    <div id="pages">
+        <header>
+            <img src="#" alt="Poetize">
+        </header>
+
+        <form>
+            <fieldset>
+                <legend>
+                    <h2>Insira seus dados para efetuar o login</h2>
+                </legend>
+
+                <div class="field">
+                    <label for="email">Email: </label>
+                    <input type="text" name="mail">
+                </div>
+                <div class="field">
+                    <label for="pass">Senha: </label>
+                    <input type="password" name="password">
+                </div>
+                <button type="button" onclick="Login()">Entrar</button>
+                <button type="button" onclick="goToSignup()">Cadastrar-se</button>
+            </fieldset>
+        </form>
+    </div>
+
+<script src="/scripts/Login.js"></script>
+</body>
+</html>
