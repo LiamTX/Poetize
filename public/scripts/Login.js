@@ -15,10 +15,10 @@ document.getElementById('loginBTN').addEventListener('click', async () => {
     await fetch('https://poetize-api.herokuapp.com/api/users/auth', fetchOptions)
         .then(res => res.json())
             .then(result => {
-                // await localStorage.setItem(
-                //     'session', 
-                //     JSON.stringify({id: result.user.id, token: result.token
-                // }));
+                await localStorage.setItem(
+                    'session', 
+                    JSON.stringify({id: result.user.id, token: result.token
+                }));
 
                 window.location.href = '/feed';
             }).catch(error => console.log(error));

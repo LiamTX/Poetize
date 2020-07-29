@@ -16,7 +16,8 @@ document.getElementById('signupBTN').addEventListener('click', async () => {
     await fetch('https://poetize-api.herokuapp.com/api/users', fetchOptions)
         .then(res => res.json())
             .then(result => {
-
+                alert('Cadastro efetuado com sucesso!')
+                window.location.href = '/login';
                 console.log(result)
             }).catch(error => console.log(error));
 });
