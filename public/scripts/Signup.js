@@ -13,7 +13,7 @@ document.getElementById('signupBTN').addEventListener('click', async () => {
         }
     };
 
-    await fetch('https://poetize.herokuapp.com/api/users', fetchOptions)
+    await fetch('https://poetize-api.herokuapp.com/api/users', fetchOptions)
         .then(res => res.json())
             .then(result => {
 
