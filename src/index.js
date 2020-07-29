@@ -1,11 +1,20 @@
 const express = require('express');
 const app = express();
-const routes = require('./router');
 
-app.use(routes);
+require('dotenv');
 
 app.use(express.urlencoded( {extended: true} ));
+app.use(express.json());
+app.use(express.static("public"));
 
-app.listen(3000, console.log("Started!"));
+const nunjucks = require('nunjucks');
+nunjucks.configure("src/views", {
+    express: app,
+    noCache: true
+});
 
-module.exports = app; 
+const routes = require('./router/routes');
+app.use(routes);
+
+const port = process.env.PORT || 8080;
+app.listen(port, () => console.log('Started!'));

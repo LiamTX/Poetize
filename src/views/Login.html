@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css"  media="screen,projection"/>
     <link rel="stylesheet" href="/styles/Login.css">
     <link rel="stylesheet" href="/styles/global.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
@@ -11,6 +13,7 @@
 </head>
 <body>
     <div id="pages">
+        
         <header>
             <img src="#" alt="Poetize">
         </header>
@@ -23,18 +26,20 @@
 
                 <div class="field">
                     <label for="email">Email: </label>
-                    <input type="text" name="mail">
+                    <input type="text" name="mail" autocomplete="off">
                 </div>
                 <div class="field">
                     <label for="pass">Senha: </label>
-                    <input type="password" name="password">
+                    <input type="password" name="password" autocomplete="off">
                 </div>
                 <button type="button" onclick="Login()">Entrar</button>
-                <button type="button" onclick="goToSignup()">Cadastrar-se</button>
+                <a href="/signup"><button type="button">Cadastrar-se</button></a> 
             </fieldset>
         </form>
+        
     </div>
 
+<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
 <script src="/scripts/Login.js"></script>
 </body>
 </html>
