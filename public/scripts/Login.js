@@ -28,7 +28,7 @@ document.getElementById('loginBTN').addEventListener('click', async () => {
                             'Content-Type': 'application/json'
                         }
                     };
-                    fetch(`http://localhost:8080/token`, Options);
+                    fetch(`https://poetize.herokuapp.com/token`, Options);
                     window.location.href = `/feed`;
                 }
             }).catch(error => console.log(error));

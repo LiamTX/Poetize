@@ -2,6 +2,6 @@ document.getElementById('btnLogOut').addEventListener('click', async () => {
     const Options = {
         method: 'DELETE',
     };
-    await fetch('http://localhost:8080/token', Options);
+    await fetch('https://poetize.herokuapp.com/token', Options);
     window.location.href = '/login';
 });
