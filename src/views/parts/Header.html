@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="/styles/Global.css">
+<link rel="stylesheet" href="/styles/parts/Header.css">
+<nav style="background-color: #0f0913;">
+    <div class="nav-wrapper">
+      <a href="/feed" class="brand-logo" id="logo">Logo</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li>
+            <a href="/mypoems" style="color:gray;;" id="hrefMyPoems">Meu poemas</a>
+        </li>
+        <li>
+            <a href="/newPoem" style="color:gray;;" id="hrefNewPoem">Registre um poema</a>
+        </li>
+        <button id="btnLogOut">Sair</button>
+      </ul>
+      
+    </div>
+</nav>
+
+<script src="/scripts/parts/Header.js"></script>
+
+<!-- <script>
+    const url = window.location.href.split("/")[3];
+
+    const newPoem = document.getElementById("hrefNewPoem");
+    const myPoems = document.getElementById("hrefMyPoems");
+
+    if(url == "newPoem"){
+        newPoem.classList.add("clickedHeaderLI");
+    }else if(url.substring(0, 7) == "myPoems"){
+        myPoems.classList.add("clickedHeaderLI");
+    };
+</script> -->

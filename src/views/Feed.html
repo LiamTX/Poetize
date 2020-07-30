@@ -1,11 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt_br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css"  media="screen,projection"/>
+    <link rel="stylesheet" href="/styles/Feed.css">
+    <link rel="stylesheet" href="/styles/global.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap" rel="stylesheet">
     <title>Feed</title>
 </head>
 <body>
-    <h1>Em desenvolvimento!</h1>
+    {% include "parts/Header.html" %}
+    <div id="pages">
+
+        <!-- <main>
+            <div class="poemCard">
+                {% if poems != "" %}
+                {% for poem in poems %}
+                    <div class="card">
+                        <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="images/office.jpg">
+                        </div>
+                        <input type="hidden" value={{poem.id}} name="poemID">
+                        <div class="card-content">
+                            <span class="card-title activator white-text text-darken-4">{{poem.title}}<i class="material-icons right">more_vert</i></span>
+                            <p><a onclick="selectPoem({{poem.id}})" href="#">Acessar poema</a></p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#"><i onclick="like({{poem.id}})" class="material-icons" name="likeIcon" id="likeBTN">favorite_border</i></a>   
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">{{poem.title}}<i class="material-icons right">close</i></span>
+                            <p>{{poem.poem}}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+                {% else %}
+                    <h1>Sem poemas cadastrados.</h1>
+                {% endif %}
+            </div>
+        </main> -->
+
+        <main>
+            <div class="poemCard">
+                {% for poem in poems %}
+                    <div class="card">
+                        <input type="hidden" value={{poem.id}} name="poemID">
+                        <div class="card-content">
+                            <span class="card-title activator white-text text-darken-4">{{poem.title}}<i class="material-icons right">more_vert</i></span>
+                            <p><a onclick="selectPoem({{poem.id}})" href="#">Acessar poema</a></p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#"><i onclick="like({{poem.id}})" class="material-icons" name="likeIcon" id="likeBTN">favorite_border</i></a>   
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">{{poem.title}}<i class="material-icons right">close</i></span>
+                            <p>{{poem.poem}}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </main>
+
+    </div>
+
+<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+<script src="/scripts/Feed.js"></script>
 </body>
 </html>

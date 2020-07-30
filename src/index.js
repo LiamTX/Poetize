@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-require('dotenv');
+require('dotenv').config();
 
 app.use(express.urlencoded( {extended: true} ));
 app.use(express.json());
