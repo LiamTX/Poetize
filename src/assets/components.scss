@@ -1,0 +1,65 @@
+.card-style-1{
+    display: block !important;
+    border-radius: 10px !important;
+    box-shadow: 7px 6px 15px rgba(110, 110, 110, 0.424) !important;
+}
+
+#map{
+    width: 80%;
+    height: 400px;
+    float: left;
+}
+
+li{
+    cursor: pointer;
+    -webkit-transition: background-color  1s ease-out;
+    -moz-transition: background-color  1s ease-out;
+    -o-transition: background-color  1s ease-out;
+    transition: background-color  1s ease-out;;
+
+    &:hover{
+        background-color: rgba(192, 192, 192, 1);
+        cursor: pointer;
+        -webkit-transition: background-color  1s ease-out;
+        -moz-transition: background-color  1s ease-out;
+        -o-transition: background-color  1s ease-out;
+        transition: background-color  1s ease-out;;
+    }
+}
+
+.toolBardiv{
+    header{
+        min-height: 65px;
+        box-shadow: 7px 6px 15px rgba(117, 117, 117, 0.424) !important;
+    }
+}
+
+.hiden-input{
+    display: none;
+}
+
+.drop-input{
+
+    display: block;
+    max-width: 100%;
+    width: 100%;
+    border-radius: 10px 10px 0px 0px;
+    background-color: rgb(240, 240, 240);
+    padding: 10px;
+    
+}
+
+.card-footer{
+    display: block;
+    background-color: rgb(255, 255, 255);
+    border-radius: 0px 0px 10px 10px;
+    padding: 10px;
+
+}
+
+.map-style{
+    display: block !important;
+    max-width: 50% !important;
+    width: 100% !important;
+    height: 200px !important;
+}
