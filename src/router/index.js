@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -30,6 +29,14 @@ const router = new VueRouter({
       ]
     },
     {
+      beforeEnter: (to, from, next) => {
+        if(localStorage.token == undefined){
+          router.push('/Login');
+          return;
+        }
+
+        next();
+      },
       path: '/Private',
       component: () => import('../views/ViewsPrivate.vue'),
 
