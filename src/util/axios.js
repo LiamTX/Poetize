@@ -1,4 +1,5 @@
 import axios from 'axios';
+import router from '../router/index'
 
 axios.interceptors.request.use(
     config => {
@@ -7,7 +8,7 @@ axios.interceptors.request.use(
     },
     error => {
         return Promise.reject(error);
-    }
-);
+    }   
+)
 
 export default axios;

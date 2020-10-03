@@ -2,10 +2,19 @@ import axios from '../../util/axios'
 
 export default {
     namespaced: true,
+    state: {
+        poems: []
+    },
+    mutations: {
+        poemsPush(state, payload){
+            state.poems.push(payload);
+        }
+    },
     actions: {
         async getPoems(context){
             const poems = await axios.get(process.env.VUE_APP_BASE_URL+'/poems');
 
+            context.commit('poemsPush', poems.data)
             return poems.data;
         },
         async like(context, poem_id){
@@ -22,6 +31,11 @@ export default {
             const myLikes = await axios.get(process.env.VUE_APP_BASE_URL+'/likes/user');
 
             return myLikes.data;
+        },
+        async delete(context, id){
+            const poem = await axios.delete(process.env.VUE_APP_BASE_URL+`/poems/${id}`);
+
+            return poem.data;
         }
     }
 }

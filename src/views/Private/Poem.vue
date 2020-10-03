@@ -19,6 +19,8 @@
           v-model="poem.poem"
         />
 
+        <small>Seja autêntico...*</small>
+
         <v-btn v-if="!loading" class="button mt-2" @click="sendForm()" dark>Poetizar</v-btn>
         <div v-else class="button alg-txt-c mt-2">
           <v-progress-circular indeterminate dark></v-progress-circular>

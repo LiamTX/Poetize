@@ -17,6 +17,6 @@ export default {
             const user = await axios.put(process.env.VUE_APP_BASE_URL+'/users', newData);
 
             return user.data;
-        }
+        },
     }
 }

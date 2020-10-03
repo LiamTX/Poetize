@@ -18,7 +18,7 @@ export default {
   components: { NavBar, PoemCard },
   data() {
     return {
-      poems: "",
+      poems: [],
     };
   },
   methods: {

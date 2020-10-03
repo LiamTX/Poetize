@@ -68,24 +68,32 @@
           class="button mt-4"
           dark
           max-width="30%"
-        >Editar</v-btn>
+          >Editar</v-btn
+        >
         <v-btn
           v-else
           @click="disabled = true"
           class="button mt-4"
           color="red"
           max-width="30%"
-        >Cancelar</v-btn>
-        <v-btn v-if="!disabled && !loading" class="button mt-4" dark max-width="30%" @click="sendForm">Salvar</v-btn>
+          >Cancelar</v-btn
+        >
+        <v-btn
+          v-if="!disabled && !loading"
+          class="button mt-4"
+          dark
+          max-width="30%"
+          @click="sendForm"
+          >Salvar</v-btn
+        >
         <div v-else-if="loading" class="button alg-txt-c mt-2">
           <v-progress-circular indeterminate dark></v-progress-circular>
         </div>
 
-
         <h2 class="mt-4">Seus poemas</h2>
 
         <div v-for="poem in poems" :key="poem.id" class="input">
-          <PoemCard :poem="poem" />
+          <PoemCard :poem="poem" :my="true" @delete="dodelete($event)" />
         </div>
       </v-container>
     </v-container>
@@ -205,7 +213,18 @@ export default {
             position: "topCenter",
           });
           this.loading = false;
+          this.disabled = true;
         }
+      });
+    },
+    dodelete(e) {
+      let poem = this.poems.filter((item) => {
+        return item.id === e;
+      });
+      this.poems.splice(this.poems.indexOf(poem), 1);
+
+      this.$toast.success("Poema deletado com sucesso!", "", {
+        position: "topCenter",
       });
     },
   },

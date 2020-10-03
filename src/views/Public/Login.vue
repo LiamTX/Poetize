@@ -78,12 +78,13 @@ export default {
         } else {
           localStorage.token = res.data.token;
 
+          this.$toast.success("Bem-Vindo!", "Hey", { position: "topCenter" });
           this.$router.push("/Feed");
         }
       });
     },
     pushSignup(){
-      this.$router.push('/Signup')
+      this.$router.push('/Signup');
     }
   },
 };

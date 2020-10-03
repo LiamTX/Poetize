@@ -31,10 +31,10 @@ const router = new VueRouter({
     {
       beforeEnter: (to, from, next) => {
         if(localStorage.token == undefined){
+         
           router.push('/Login');
           return;
-        }
-
+        };  
         next();
       },
       path: '/Private',
