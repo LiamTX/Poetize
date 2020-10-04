@@ -1,5 +1,10 @@
 # poetizevue
 
+## First of all configure your .env with the variable
+```
+VUE_APP_BASE_URL=...
+```
+
 ## Project setup
 ```
 npm install
@@ -14,6 +19,3 @@ npm run serve
 ```
 npm run build
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
