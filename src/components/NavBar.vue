@@ -1,62 +1,167 @@
 <template>
-  <div class="toolBardiv">
-    <v-app-bar dark class="ac">
-      <div class="d-flex flex-row justify-space-between mw-w-100">
-        <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
-      </div>
-      <div>
-        <v-toolbar-title>Poetize</v-toolbar-title>
-      </div>
-    </v-app-bar>
+  <div class="hidden">
+    <vs-navbar dark square center-collapsed v-model="active">
+      <template #left>
+        <vs-button @click="activeSidebar = !activeSidebar" flat icon>
+          <i class="bx bx-menu"></i>
+        </vs-button>
+      </template>
+      <!-- <vs-navbar-item :active="active == 'guide'" id="guide">
+        Guide
+      </vs-navbar-item>
+      <vs-navbar-item :active="active == 'docs'" id="docs">
+        Documents
+      </vs-navbar-item>
+      <vs-navbar-item :active="active == 'components'" id="components">
+        Components
+      </vs-navbar-item>
+      <vs-navbar-item :active="active == 'license'" id="license">
+        license
+      </vs-navbar-item> -->
+      <template #right>
+        <!-- <vs-button flat>Login</vs-button>
+        <vs-button>Get Started</vs-button> -->
+        <h2>Poetize</h2>
+      </template>
+    </vs-navbar>
+    <vs-sidebar dark absolute v-model="active" :open.sync="activeSidebar">
+      <template #logo>
+        <!-- ...img logo -->
+        Poetize
+      </template>
+      <vs-sidebar-item id="home">
+        <template #icon>
+          <i class="bx bx-home"></i>
+        </template>
+        Home
+      </vs-sidebar-item>
+      <vs-sidebar-item id="market">
+        <template #icon>
+          <i class="bx bx-grid-alt"></i>
+        </template>
+        Market Overview
+      </vs-sidebar-item>
+      <vs-sidebar-item id="Music">
+        <template #icon>
+          <i class="bx bxs-music"></i>
+        </template>
+        Music
+      </vs-sidebar-item>
+      <vs-sidebar-group>
+        <template #header>
+          <vs-sidebar-item arrow>
+            <template #icon>
+              <i class="bx bx-group"></i>
+            </template>
+            Social media
+          </vs-sidebar-item>
+        </template>
 
-    <v-navigation-drawer class="" dark v-model="drawer" absolute temporary>
-      <v-list nav dense>
-        <v-list-item-group v-model="group" active-class="text--accent-4">
-          <v-list-item exact to="/Feed">
-            <v-list-item-icon>
-              <v-icon>mdi-home</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Feed</v-list-item-title>
-          </v-list-item>
+        <vs-sidebar-item id="Instagram">
+          <template #icon>
+            <i class="bx bxl-instagram"></i>
+          </template>
+          Instagram
+        </vs-sidebar-item>
+        <vs-sidebar-item id="twitter">
+          <template #icon>
+            <i class="bx bxl-twitter"></i>
+          </template>
+          Twitter
+        </vs-sidebar-item>
+        <vs-sidebar-item id="Facebook">
+          <template #icon>
+            <i class="bx bxl-facebook"></i>
+          </template>
+          Facebook
+        </vs-sidebar-item>
+      </vs-sidebar-group>
+      <vs-sidebar-group>
+        <template #header>
+          <vs-sidebar-item arrow>
+            <template #icon>
+              <i class="bx bx-code-alt"></i>
+            </template>
+            Coding
+          </vs-sidebar-item>
+        </template>
 
-          <v-list-item exact to="/Poem">
-            <v-list-item-icon>
-              <v-icon>mdi-book-plus</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Novo poema</v-list-item-title>
-          </v-list-item>
+        <vs-sidebar-item id="github">
+          <template #icon>
+            <i class="bx bxl-github"></i>
+          </template>
+          Github
+        </vs-sidebar-item>
+        <vs-sidebar-item id="codepen">
+          <template #icon>
+            <i class="bx bxl-codepen"></i>
+          </template>
+          Codepen
+        </vs-sidebar-item>
+        <vs-sidebar-item id="discord">
+          <template #icon>
+            <i class="bx bxl-discord"></i>
+          </template>
+          Discord
+        </vs-sidebar-item>
+        <vs-sidebar-item id="Javascript">
+          <template #icon>
+            <i class="bx bxl-javascript"></i>
+          </template>
+          Javascript
+        </vs-sidebar-item>
+        <vs-sidebar-item id="git">
+          <template #icon>
+            <i class="bx bxl-git"></i>
+          </template>
+          Git
+        </vs-sidebar-item>
+      </vs-sidebar-group>
+      <vs-sidebar-item id="donate">
+        <template #icon>
+          <i class="bx bxs-donate-heart"></i>
+        </template>
+        Donate
+      </vs-sidebar-item>
+      <vs-sidebar-item id="drink">
+        <template #icon>
+          <i class="bx bx-drink"></i>
+        </template>
+        Drink
+      </vs-sidebar-item>
+      <vs-sidebar-item id="shopping">
+        <template #icon>
+          <i class="bx bxs-shopping-bags"></i>
+        </template>
+        Shopping
+      </vs-sidebar-item>
+      <vs-sidebar-item id="chat">
+        <template #icon>
+          <i class="bx bx-chat"></i>
+        </template>
+        Chat
+      </vs-sidebar-item>
+      <template #footer>
+        <vs-row justify="space-between">
+          <vs-avatar>
+            <img src="/avatars/avatar-5.png" alt="" />
+          </vs-avatar>
 
-          <v-list-item exact to="/Profile">
-            <v-list-item-icon>
-              <v-icon>mdi-account</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Perfil</v-list-item-title>
-          </v-list-item>
+          <vs-avatar badge-color="danger" badge-position="top-right">
+            <i class="bx bx-bell"></i>
 
-          <div class="alg-txt-c mt-10">
-            <v-btn class="button red" @click="logOff()">SAIR</v-btn>
-          </div>
-        </v-list-item-group>
-      </v-list>
-    </v-navigation-drawer>
+            <template #badge> 28 </template>
+          </vs-avatar>
+        </vs-row>
+      </template>
+    </vs-sidebar>
   </div>
 </template>
-
-<script>
+  <script>
 export default {
-  name: "NavBar",
-  data() {
-    return {
-      drawer: false,
-      group: null,
-    };
-  },
-  methods: {
-    async logOff(){
-      await localStorage.clear();
-
-      this.$router.push('/Login');
-    }
-  }
+  data: () => ({
+    active: "home",
+    activeSidebar: false,
+  }),
 };
 </script>

@@ -1,97 +1,75 @@
 <template>
-  <v-container class="d-flex flex-column box mt-7 justify-space-between">
-    <v-container class="d-flex flex-column justify-center align-center mt-14">
-      <v-text-field
-        class="input"
-        prepend-icon="mdi-email"
-        v-model="user.email"
-        label="E-mail"
-        required
-        autocomplete="off"
-      />
+  <vs-row class="mt-20" justify="center" direction="column">
+    <vs-input icon-after dark v-model="user.email" placeholder="E-mail">
+      <template #icon>
+        <i class="bx bx-user"></i>
+      </template>
+    </vs-input>
 
-      <v-text-field
-        class="input"
-        prepend-icon="mdi-lock"
-        v-model="user.password"
-        label="Senha"
-        required
-        type="password"
-        autocomplete="off"
-      />
+    <vs-input
+      dark
+      class="mt-2"
+      type="password"
+      v-model="user.pass"
+      placeholder="Senha"
+      :visiblePassword="hasVisiblePassword"
+      icon-after
+      @click-icon="hasVisiblePassword = !hasVisiblePassword"
+    >
+      <template #icon>
+        <i v-if="!hasVisiblePassword" class="bx bx-show-alt"></i>
+        <i v-else class="bx bx-hide"></i>
+      </template>
+    </vs-input>
 
-      <v-btn v-if="!loading" class="button mt-2" @click="sendForm()" dark>Entrar</v-btn>
-      <div v-else class="button alg-txt-c mt-2">
-        <v-progress-circular indeterminate dark />
-      </div>
-  
-      <v-btn class="button mt-2" @click="pushSignup()" dark>Cadastre-se</v-btn>
-    </v-container>
-  </v-container>
+    <vs-col>
+      <Prompt/>  
+    </vs-col>
+
+    <!-- <a href="">Esqueceu sua senha?</a> -->
+
+    <vs-row class="mt-1" justify="center">
+      <vs-button v-if="!loading" class="button" dark :active="active == 1">
+        Entrar
+      </vs-button>
+      <vs-button
+        v-else
+        loading
+        class="button"
+        dark
+        :active="active == 1"
+        @click="active = 1"
+      >
+        Entrar
+      </vs-button>
+    </vs-row>
+
+    <vs-row justify="center">
+      <vs-button to="/Signup" class="button" dark :active="active == 1">
+        Cadastrar
+      </vs-button>
+    </vs-row>
+  </vs-row>
 </template>
 
 <script>
 import { mapActions } from "vuex";
+import NavBar from "../../components/NavBar";
+import Prompt from "../../components/ForgotPassPrompt";
+
 export default {
-  name: "Login",
+  components: { NavBar, Prompt },
   data() {
     return {
-      loading: false,
       user: {
         email: "",
-        password: "",
+        pass: "",
       },
+      active: 0,
+      loading: false,
+      hasVisiblePassword: false,
     };
   },
-  methods: {
-    ...mapActions({
-      login: "VuexLogin/login",
-    }),
-    checkFields() {
-      if (this.user.email === "" || this.user.password === "") {
-        return false;
-      }
-
-      return true;
-    },
-    async sendForm() {
-      this.loading = true;
-
-      if (!this.checkFields()) {
-        this.$toast.error("Preencha todos os campos.", "", {
-          position: "topCenter",
-        });
-        this.loading = false;
-        return;
-      }
-
-      await this.login(this.user).then((res) => {
-        if (res.data.status != 200) {
-          this.$toast.error(res.data.error, "", {
-            position: "topCenter",
-          });
-
-          this.user.email = "";
-          this.user.password = "";
-
-          this.loading = false;
-        } else {
-          localStorage.token = res.data.token;
-
-          this.$toast.success("Bem-Vindo!", "Hey", { position: "topCenter" });
-          this.$router.push("/Feed");
-        }
-      });
-    },
-    pushSignup(){
-      this.$router.push('/Signup');
-    }
-  },
+  methods: {},
 };
 </script>
-
-<style>
-.box {
-  max-width: 550px;
-}
-</style>

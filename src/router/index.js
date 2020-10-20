@@ -3,62 +3,48 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-const router = new VueRouter({
-  
-  routes: [
-    {
-      path: '/',
-      name: 'Home',
-      component: () => import('../views/Public/Home.vue')
-    },
-    {
-      path: '/Public',
-      component: () => import('../views/ViewsPublic.vue'),
-  
-      children: [
-        {
-          path: '/Login',
-          name: 'Login',
-          component: () => import('../views/Public/Login.vue')
-        },
-        {
-          path: '/Signup',
-          name: 'Signup',
-          component: () => import('../views/Public/Signup.vue')
-        }
-      ]
-    },
-    {
-      beforeEnter: (to, from, next) => {
-        if(localStorage.token == undefined){
-         
-          router.push('/Login');
-          return;
-        };  
-        next();
+const routes = [
+  // {
+  //   path: '/',
+  //   name: 'Home',
+  //   component: Home
+  // },
+  {
+    path: '/Public',
+    component: () => import('../views/ViewsPublic.vue'),
+    children: [
+      {
+        path: '/Signup',
+        name: 'Signup',
+        component: () => import('../views/Public/Signup.vue')
       },
-      path: '/Private',
-      component: () => import('../views/ViewsPrivate.vue'),
+      {
+        path: '/Login',
+        name: 'Login',
+        component: () => import('../views/Public/Login.vue')
+      },
+      {
+        path: '/t',
+        name: 'Teste',
+        component: () => import('../views/Public/Teste.vue')
+      }
+    ]
+  },
+  {
+    path: '/Private',
+    component: () => import('../views/ViewsPrivate.vue'),
+    children: [
+      {
+        path: '/Feed',
+        name: 'Feed',
+        component: () => import('../views/Private/Feed.vue')
+      }
+    ]
+  }
+]
 
-      children: [
-        {
-          path: '/Feed',
-          name: 'Feed',
-          component: () => import('../views/Private/Feed.vue')
-        },
-        {
-          path: '/Poem',
-          name: 'Poem',
-          component: () => import('../views/Private/Poem.vue')
-        },
-        {
-          path: '/Profile',
-          name: 'Profile',
-          component: () => import('../views/Private/Profile.vue')
-        }
-      ]
-    }
-  ]
+const router = new VueRouter({
+  routes
 })
 
 export default router

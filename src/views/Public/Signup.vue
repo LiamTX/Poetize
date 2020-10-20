@@ -1,116 +1,171 @@
 <template>
-  <v-container class="d-flex flex-column box mt-7 justify-space-between">
-    <v-btn to="/" class text fab small>
-      <v-icon>mdi-arrow-left</v-icon>
-    </v-btn>
-    <v-container class="d-flex flex-column justify-center align-center mt-14">
-      <v-text-field
-        class="input"
-        prepend-icon="mdi-email"
+  <vs-row>
+    <vs-row class="mt-20" justify="center" direction="column">
+      <vs-input icon-after dark v-model="user.name" placeholder="Nome">
+        <template #icon>
+          <i class="bx bx-user"></i>
+        </template>
+      </vs-input>
+
+      <vs-input
+        icon-after
+        dark
+        class="mt-2"
         v-model="user.email"
-        label="E-mail"
-        required
-        autocomplete="off"
-      />
+        placeholder="E-mail"
+      >
+        <template #icon>
+          <i class="bx bx-mail-send"></i>
+        </template>
+        <template v-if="validEmail" #message-success> E-mail valido </template>
+        <template v-if="!validEmail && user.email !== ''" #message-danger>
+          E-mail invalido
+        </template>
+      </vs-input>
 
-      <v-text-field
-        class="input"
-        prepend-icon="mdi-account"
-        v-model="user.name"
-        label="Nome"
-        required
-        autocomplete="off"
-      />
-
-      <v-text-field
-        class="input"
-        prepend-icon="mdi-lock"
-        v-model="user.password"
-        label="Senha"
-        required
+      <vs-input
+        dark
+        class="mt-2"
         type="password"
-      />
+        v-model="user.pass"
+        placeholder="Senha"
+        :progress="getProgress"
+        :visiblePassword="hasVisiblePassword"
+        icon-after
+        @click-icon="hasVisiblePassword = !hasVisiblePassword"
+      >
+        <template #icon>
+          <i v-if="!hasVisiblePassword" class="bx bx-show-alt"></i>
+          <i v-else class="bx bx-hide"></i>
+        </template>
 
-      <v-btn v-if="!loading" class="button mt-2" @click="sendForm()" dark>Cadastrar</v-btn>
-      <div v-else class="button alg-txt-c mt-2">
-        <v-progress-circular indeterminate dark></v-progress-circular>
-      </div>
-    </v-container>
-  </v-container>
+        <template v-if="getProgress >= 100" #message-success>
+          Secure password
+        </template>
+      </vs-input>
+
+      <vs-row class="mt-2" justify="center">
+        <vs-button
+          v-if="!loading"
+          class="button"
+          dark
+          :active="active == 1"
+          @click="sendForm"
+        >
+          Cadastrar
+        </vs-button>
+        <vs-button
+          v-else
+          loading
+          class="button"
+          dark
+          :active="active == 1"
+          @click="active = 1"
+        >
+          Cadastrar
+        </vs-button>
+      </vs-row>
+    </vs-row>
+  </vs-row>
+
+  <!-- <vs-row class="mt-20" justify="center" direction="column">
+    <i class="bx bx-arrow-back"></i>
+    
+  </vs-row> -->
 </template>
 
 <script>
 import { mapActions } from "vuex";
+import NavBar from "../../components/NavBar";
 
 export default {
-  name: "Signup",
+  components: { NavBar },
   data() {
     return {
-      loading: false,
       user: {
-        email: "",
         name: "",
-        password: "",
+        email: "",
+        pass: "",
       },
+      active: 0,
+      loading: false,
+      hasVisiblePassword: false,
     };
   },
   methods: {
     ...mapActions({
-      register: "VuexSignup/register",
+      signup: "VuexSignup/signup",
+      openNotification: "openNotification",
     }),
-    checkFields(){
-      if(this.user.email === "" || this.user.name === "" || this.user.password === ""){
-        return false;
-      };
-
-      return true;
-    },
     async sendForm() {
       this.loading = true;
 
-      if(!this.checkFields()){
-        this.$toast.error("Preencha todos os campos.", "", {
-            position: "topCenter",
-        });
-        this.loading = false;
-        return;
+      const user = await this.signup(this.user);
+
+      console.log(user);
+
+      // if (!user) {
+      // const noti = this.$vs.notification({
+      //   progress: "auto",
+      //   color: "danger",
+      //   position: "top-center",
+      //   title: "Documentation Vuesax 4.0+",
+      //   text: `These documents refer to the latest version of vuesax (4.0+),
+      //     to see the documents of the previous versions you can do it here 👉 Vuesax3.x`,
+      // });
+
+      // const noti = this.$vs.notification({
+      //   progress: "auto",
+      //   color: "success",
+      //   position: "top-center",
+      //   title: `Hey, ${user.name}`,
+      //   text: `Seu cadastro foi efetuado com sucesso, seja bem-vindo(a)!`,
+      // });
+
+      this.loading = false;
+    },
+  },
+  computed: {
+    validEmail() {
+      return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
+        this.user.email
+      );
+    },
+    getProgress() {
+      let progress = 0;
+
+      // at least one number
+
+      if (/\d/.test(this.user.pass)) {
+        progress += 20;
       }
-      
-      await this.register(this.user).then(res => {
-        if (res.data.errno) {
-          this.$toast.error("O e-mail informado já existe.", "", {
-            position: "topCenter",
-          });
 
-          this.user.email = "";
-          this.user.name = "";
-          this.user.password = "";
+      // at least one capital letter
 
-          this.loading = false;
-        } else {
-          this.$toast.success(res.data, "", { position: "topCenter" });
-          this.$router.push("/Login");
-        }
-      }).catch(error => {
-        alert('Algo de errado tente novamente!')
-      });
+      if (/(.*[A-Z].*)/.test(this.user.pass)) {
+        progress += 20;
+      }
+
+      // at menons a lowercase
+
+      if (/(.*[a-z].*)/.test(this.user.pass)) {
+        progress += 20;
+      }
+
+      // more than 5 digits
+
+      if (this.user.pass.length >= 6) {
+        progress += 20;
+      }
+
+      // at least one special character
+
+      if (/[^A-Za-z0-9]/.test(this.user.pass)) {
+        progress += 20;
+      }
+
+      return progress;
     },
   },
 };
 </script>
-
-<style>
-.box {
-  max-width: 550px;
-}
-
-.btn-signup {
-  height: 10em;
-  position: relative;
-}
-
-.btn-signup v-progress-circular {
-  position: absolute;
-  left: 50%;
-}
-</style>

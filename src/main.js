@@ -1,20 +1,22 @@
 import Vue from 'vue'
-import App from './App.vue'
+import 'boxicons/css/boxicons.min.css'
 import './assets/index.scss'
-import VueIziToast from 'vue-izitoast';
-import izitoastOptions from './util/iziToast'
-import 'izitoast/dist/css/iziToast.min.css';
-import router from './router/index'
+import Vuesax from 'vuesax'
+import 'vuesax/dist/vuesax.css'
+import App from './App.vue'
+import router from './router'
 import store from './store'
-import vuetify from './plugins/vuetify'
 
-Vue.use(VueIziToast, izitoastOptions);
+Vue.use(Vuesax, {
+  colors: {
+    primary: '#2e8b9e'
+  }
+})
 
 Vue.config.productionTip = false
 
 new Vue({
   router,
   store,
-  vuetify,
   render: h => h(App)
 }).$mount('#app')
