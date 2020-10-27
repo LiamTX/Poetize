@@ -23,13 +23,19 @@
     </vs-input>
 
     <vs-col>
-      <Prompt/>  
+      <Prompt />
     </vs-col>
 
     <!-- <a href="">Esqueceu sua senha?</a> -->
 
     <vs-row class="mt-1" justify="center">
-      <vs-button v-if="!loading" class="button" dark :active="active == 1">
+      <vs-button
+        v-if="!loading"
+        class="button"
+        dark
+        :active="active == 1"
+        @click="sendForm()"
+      >
         Entrar
       </vs-button>
       <vs-button
@@ -70,6 +76,54 @@ export default {
       hasVisiblePassword: false,
     };
   },
-  methods: {},
+  methods: {
+    ...mapActions({
+      auth: "VuexLogin/auth",
+    }),
+    async sendForm() {
+      try {
+        this.loading = true;
+
+        const response = await this.auth(this.user);
+
+        await localStorage.setItem("token", response.data.token);
+
+        this.$vs.notification({
+          progress: "auto",
+          color: "success",
+          position: "top-center",
+          title: "Hey!",
+          text: "Seja bem-vindo(a).",
+        });
+
+        this.loading = false;
+
+        this.$router.push('/Feed');
+      } catch (error) {
+        const { status } = error.response;
+
+        if (status == 401) {
+          this.$vs.notification({
+            progress: "auto",
+            color: "danger",
+            position: "top-center",
+            title: "Não autorizado.",
+            text: "E-mail ou senha incorretos!",
+          });
+          this.loading = false;
+        }
+        if (status == 404) {
+          this.$vs.notification({
+            progress: "auto",
+            color: "danger",
+            position: "top-center",
+            title: "Usuario não encontrado.",
+            text: "Acesse a pagina de signup e efetue o cadastro!",
+          });
+          this.loading = false;
+        }
+      }
+    },
+  },
 };
 </script>

@@ -1,16 +1,18 @@
-<template>
-  <div>
-    <NavBar/>
-    <vs-row>
-        
-    </vs-row>
-  </div>
+<template >
+    <div>
+        <NavBar/>
+        <div class="mt-5">
+            <PoemCard/>
+        </div>
+    </div>
 </template>
 
 <script>
-import NavBar from "../../components/NavBar";
+import NavBar from '@/components/NavBar.vue';
+import PoemCard from '@/components/PoemCard.vue';
+
 
 export default {
-  components: {NavBar},
-};
+    components: {NavBar, PoemCard}
+}
 </script>

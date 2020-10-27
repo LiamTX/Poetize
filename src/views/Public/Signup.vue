@@ -95,34 +95,43 @@ export default {
   methods: {
     ...mapActions({
       signup: "VuexSignup/signup",
-      openNotification: "openNotification",
     }),
     async sendForm() {
-      this.loading = true;
+      try {
+        this.loading = true;
 
-      const user = await this.signup(this.user);
+        const user = await this.signup(this.user);
 
-      console.log(user);
+        this.$vs.notification({
+          duration: "none",
+          progress: "auto",
+          color: "success",
+          position: "top-center",
+          title: `Hey, ${user.data.user.name}!`,
+          text:
+            "Seja bem-vindo(a), enviamos um email de verificação para o seu e-mail...por favor, quando puder efetue a confirmação! Agradecemos pelo cadastro.",
+        });
 
-      // if (!user) {
-      // const noti = this.$vs.notification({
-      //   progress: "auto",
-      //   color: "danger",
-      //   position: "top-center",
-      //   title: "Documentation Vuesax 4.0+",
-      //   text: `These documents refer to the latest version of vuesax (4.0+),
-      //     to see the documents of the previous versions you can do it here 👉 Vuesax3.x`,
-      // });
+        this.loading = false;
 
-      // const noti = this.$vs.notification({
-      //   progress: "auto",
-      //   color: "success",
-      //   position: "top-center",
-      //   title: `Hey, ${user.name}`,
-      //   text: `Seu cadastro foi efetuado com sucesso, seja bem-vindo(a)!`,
-      // });
+        this.$router.push("/Login");
+      } catch (error) {
+        const message = error.message;
 
-      this.loading = false;
+        this.loading = false;
+
+        if (message == "Cannot read property 'name' of undefined") {
+          this.$vs.notification({
+            duration: "8000",
+            progress: "auto",
+            color: "danger",
+            position: "top-center",
+            title: `Opá!`,
+            text: "Este e-mail já está sendo usado, tente outro.",
+          });
+
+        }
+      }
     },
   },
   computed: {
