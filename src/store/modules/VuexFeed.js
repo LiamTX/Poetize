@@ -5,14 +5,17 @@ export default {
     state: {
         poems: []
     },
+    getters: {
+        poemsData: state => state.poems
+    },
     mutations: {
         setPoems(state, data){
-            state.poems.push(data)
+            state.poems = data
         }
     },
     actions: {
         async getPoems(context){
-            const poems = await axios.get(process.env.VUE_APP_BASE_URL+'/api/poems');
+            const poems = await axios.get(process.env.VUE_APP_BASE_URL+'/poems');
 
             await context.commit('setPoems', poems.data);
 
