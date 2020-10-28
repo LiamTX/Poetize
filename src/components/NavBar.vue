@@ -1,6 +1,6 @@
 <template>
   <div class="hidden">
-    <vs-navbar dark square center-collapsed v-model="active">
+    <vs-navbar dark square center-collapsed>
       <template #left>
         <vs-button @click="activeSidebar = !activeSidebar" flat icon>
           <i class="bx bx-menu"></i>
@@ -19,29 +19,39 @@
         license
       </vs-navbar-item> -->
       <template #right>
-        <!-- <vs-button flat>Login</vs-button>
-        <vs-button>Get Started</vs-button> -->
         <h2>Poetize</h2>
       </template>
     </vs-navbar>
-    <vs-sidebar dark absolute v-model="active" :open.sync="activeSidebar">
+    <vs-sidebar
+      background="dark"
+      textWhite
+      absolute
+      v-model="active"
+      :open.sync="activeSidebar"
+    >
       <template #logo>
-        <!-- ...img logo -->
+        <img src="" alt="" />
         Poetize
       </template>
-      <vs-sidebar-item id="home">
+      <vs-sidebar-item id="feed" to="/Feed">
         <template #icon>
           <i class="bx bx-home"></i>
         </template>
-        Home
+        Feed
       </vs-sidebar-item>
-      <vs-sidebar-item id="market">
+      <vs-sidebar-item id="new_poem" to="/Poem">
         <template #icon>
-          <i class="bx bx-grid-alt"></i>
+          <i class="bx bx-book-add"></i>
         </template>
-        Market Overview
+        Novo poema
       </vs-sidebar-item>
-      <vs-sidebar-item id="Music">
+      <vs-sidebar-item id="profile">
+        <template #icon>
+          <i class="bx bxs-user"></i>
+        </template>
+        Perfil
+      </vs-sidebar-item>
+      <!-- <vs-sidebar-item id="Music">
         <template #icon>
           <i class="bx bxs-music"></i>
         </template>
@@ -140,17 +150,14 @@
           <i class="bx bx-chat"></i>
         </template>
         Chat
-      </vs-sidebar-item>
+      </vs-sidebar-item> -->
       <template #footer>
         <vs-row justify="space-between">
-          <vs-avatar>
-            <img src="/avatars/avatar-5.png" alt="" />
-          </vs-avatar>
-
-          <vs-avatar badge-color="danger" badge-position="top-right">
-            <i class="bx bx-bell"></i>
-
-            <template #badge> 28 </template>
+          <vs-avatar class="cp">
+            <img
+              src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/111e155a-5ab6-4f4b-82a1-91da2fe5b9c4/de7nttk-0c8254e0-92bd-4cd0-b190-85d15b0a41c0.jpg/v1/fill/w_1024,h_1308,q_75,strp/blood_bending___illustration_by_adriengonzalez_de7nttk-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3siaGVpZ2h0IjoiPD0xMzA4IiwicGF0aCI6IlwvZlwvMTExZTE1NWEtNWFiNi00ZjRiLTgyYTEtOTFkYTJmZTViOWM0XC9kZTdudHRrLTBjODI1NGUwLTkyYmQtNGNkMC1iMTkwLTg1ZDE1YjBhNDFjMC5qcGciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.3TA-zMfleFCY7bsKbUSSRYcwQGU9cNnLZu5I-rkdcSE"
+              alt="avatar"
+            />
           </vs-avatar>
         </vs-row>
       </template>
@@ -160,7 +167,7 @@
   <script>
 export default {
   data: () => ({
-    active: "home",
+    active: "",
     activeSidebar: false,
   }),
 };

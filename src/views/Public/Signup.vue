@@ -129,7 +129,6 @@ export default {
             title: `Opá!`,
             text: "Este e-mail já está sendo usado, tente outro.",
           });
-
         }
       }
     },

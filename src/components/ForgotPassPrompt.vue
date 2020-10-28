@@ -3,7 +3,12 @@
     <!-- <a @click="active3 = !active3" class="mr-3"> Esqueceu sua senha? </a> -->
 
     <vs-col class="mt-1">
-      <a class="mr-4 cp clr-primary" style="font-size: 14px" @click="active3 = !active3" >Esqueceu sua senha?</a>
+      <a
+        class="mr-4 cp clr-primary"
+        style="font-size: 14px"
+        @click="active3 = !active3"
+        >Esqueceu sua senha?</a
+      >
     </vs-col>
 
     <vs-dialog width="300px" not-center v-model="active3">

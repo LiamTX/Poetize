@@ -33,6 +33,11 @@ const routes = [
         path: '/Feed',
         name: 'Feed',
         component: () => import('../views/Private/Feed.vue')
+      },
+      {
+        path: '/Poem',
+        name: 'Poem',
+        component: () => import('../views/Private/PoemRegister.vue')
       }
     ]
   }

@@ -22,7 +22,7 @@
       </template>
     </vs-input>
 
-    <vs-col>
+    <vs-col class="alg-txt-c">
       <Prompt />
     </vs-col>
 
@@ -98,7 +98,7 @@ export default {
 
         this.loading = false;
 
-        this.$router.push('/Feed');
+        this.$router.push("/Feed");
       } catch (error) {
         const { status } = error.response;
 
