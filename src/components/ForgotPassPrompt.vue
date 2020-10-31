@@ -17,7 +17,7 @@
       </template>
 
       <div class="con-content">
-        <vs-input v-model="email" placeholder="E-mail"></vs-input>
+        <vs-input v-model="user_forgot.email" placeholder="E-mail"></vs-input>
       </div>
 
       <template #footer>
@@ -29,13 +29,45 @@
         </div>
       </template>
     </vs-dialog>
+    <!--  -->
+    <vs-dialog width="300px" not-center v-model="active4">
+      <template #header>
+        <h4 class="not-margin">
+          Digite o código enviado para o seu e-mail.
+        </h4>
+      </template>
+
+      <div class="con-content">
+        <vs-input v-model="user_reset.token" placeholder="Código"></vs-input>
+        <vs-input v-model="user_reset.new_password" placeholder="Nova senha"></vs-input>
+        <vs-input v-model="confirm_password" placeholder="Confirme a senha"></vs-input>
+      </div>
+
+      <template #footer>
+        <div class="con-footer">
+          <vs-button @click="active3 = false" transparent> Enviar </vs-button>
+          <vs-button @click="active4 = false" dark transparent>
+            Cancel
+          </vs-button>
+        </div>
+      </template>
+    </vs-dialog>
   </div>
 </template>
   <script>
 export default {
   data: () => ({
     active3: false,
-    email: "",
+    active4: false,
+    user_forgot: {
+      email: ""
+    },
+    user_reset: {
+      email: "",
+      token: "",
+      new_password: ""
+    },
+    confirm_password: ""
   }),
 };
 </script>
