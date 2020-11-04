@@ -61,7 +61,7 @@
 <script>
 import { mapActions } from "vuex";
 import NavBar from "../../components/NavBar";
-import Prompt from "../../components/ForgotPassPrompt";
+import Prompt from "../../components/PassRecovery";
 
 export default {
   components: { NavBar, Prompt },
