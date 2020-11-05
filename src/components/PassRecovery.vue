@@ -161,6 +161,7 @@ export default {
           });
 
           this.confirm_password = "";
+          this.loading = false;
           return;
         }
 

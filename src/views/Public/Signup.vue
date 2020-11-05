@@ -1,7 +1,41 @@
 <template>
   <vs-row>
     <vs-row class="mt-20" justify="center" direction="column">
-      <vs-input icon-after dark v-model="user.name" placeholder="Nome">
+      <div class="ac">
+        <input
+          ref="fileInput"
+          class="hiden-input"
+          type="file"
+          @change="onAvatarSelected"
+          accept="image/*"
+        />
+        <vs-avatar @click="$refs.fileInput.click()" size="70" circle class="cp">
+          <img :src="src_avatar" alt="" />
+        </vs-avatar>
+
+        <button @click="onUploadAvatar">Upload</button>
+        <!-- <input
+          @click="onFilePicked"
+          type="file"
+          class="hiden-input"
+          ref="fileInput"
+          accept="image/*"
+        />
+        <vs-avatar @click="pickAvatar" class="cp" size="70" circle>
+          <img
+            :src="src"
+            alt=""
+          />
+        </vs-avatar> -->
+      </div>
+
+      <vs-input
+        class="mt-2"
+        icon-after
+        dark
+        v-model="user.name"
+        placeholder="Nome"
+      >
         <template #icon>
           <i class="bx bx-user"></i>
         </template>
@@ -78,11 +112,15 @@
 import { mapActions } from "vuex";
 import NavBar from "../../components/NavBar";
 
+import axios from "axios";
+
 export default {
   components: { NavBar },
   data() {
     return {
+      src_avatar: "",
       user: {
+        avatar: "",
         name: "",
         email: "",
         pass: "",
@@ -95,7 +133,35 @@ export default {
   methods: {
     ...mapActions({
       signup: "VuexSignup/signup",
+      uploadAvatar: "uploadAvatar",
     }),
+
+    onAvatarSelected(event) {
+      const files = event.target.files;
+      let fileName = files[0].name;
+      this.imageData = event.target.files[0];
+
+      const fr = new FileReader();
+      fr.addEventListener("load", () => {
+        this.src_avatar = fr.result;
+      });
+
+      fr.readAsDataURL(files[0]);
+    },
+
+    async onUploadAvatar(){
+      const fd = new FormData();
+      fd.append('avatar', this.imageData);
+
+      // console.log(this.imageData)
+
+      // console.log(fd);
+
+      const response = await this.uploadAvatar(fd);
+
+      console.log(response)
+    },
+
     async sendForm() {
       try {
         this.loading = true;

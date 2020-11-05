@@ -5,7 +5,7 @@
         <i class="bx bx-user"></i>
       </template>
     </vs-input>
-
+    
     <vs-input
       dark
       class="mt-2"
@@ -79,6 +79,7 @@ export default {
   methods: {
     ...mapActions({
       auth: "VuexLogin/auth",
+      // getThisUser: "getThisUser",
     }),
     async sendForm() {
       try {
@@ -97,6 +98,8 @@ export default {
         });
 
         this.loading = false;
+
+        // await this.getThisUser();
 
         this.$router.push("/Feed");
       } catch (error) {

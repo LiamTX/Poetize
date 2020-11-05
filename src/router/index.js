@@ -38,6 +38,11 @@ const routes = [
         path: '/Poem',
         name: 'Poem',
         component: () => import('../views/Private/PoemRegister.vue')
+      },
+      {
+        path: '/Profile',
+        name: 'Profile',
+        component: () => import('../views/Private/Profile.vue')
       }
     ]
   }

@@ -45,7 +45,7 @@
         </template>
         Novo poema
       </vs-sidebar-item>
-      <vs-sidebar-item id="profile">
+      <vs-sidebar-item id="profile" to="/Profile">
         <template #icon>
           <i class="bx bxs-user"></i>
         </template>
