@@ -27,8 +27,8 @@ export default new Vuex.Store({
     //   await context.commit('setUser', user.data);
     // }
 
-    async uploadAvatar(context, data){
-      const response = await axios.post(process.env.VUE_APP_BASE_URL+'/teste', data);
+    async uploadAvatar(context, data) {
+      const response = await axios.post(process.env.VUE_APP_BASE_URL + '/users/upload_avatar', data);
 
       return response;
     }

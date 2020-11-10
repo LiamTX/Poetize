@@ -2,8 +2,9 @@ import axios from '../../utils/axios';
 
 export default {
     namespaced: true,
-    state: {    
-        user: ''
+    state: {
+        user: '',
+        poems: ''
     },
     getters: {
 
@@ -11,6 +12,9 @@ export default {
     mutations: {
         setUser(state, data) {
             state.user = data
+        },
+        setPoems(state, data){
+            state.poems = data;
         }
     },
     actions: {
@@ -18,6 +22,16 @@ export default {
             const user = await axios.get(process.env.VUE_APP_BASE_URL + '/users/this');
 
             await context.commit('setUser', user.data);
+        },
+        async getMyPoems(context){
+            const poems = await axios.get(process.env.VUE_APP_BASE_URL + '/poems/my');
+
+            await context.commit('setPoems', poems.data);           
+        },
+        async update(context, data) {
+            const response = await axios.put(process.env.VUE_APP_BASE_URL + '/users', data);
+
+            return response;
         }
     }
 }

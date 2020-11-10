@@ -12,21 +12,6 @@
         <vs-avatar @click="$refs.fileInput.click()" size="70" circle class="cp">
           <img :src="src_avatar" alt="" />
         </vs-avatar>
-
-        <button @click="onUploadAvatar">Upload</button>
-        <!-- <input
-          @click="onFilePicked"
-          type="file"
-          class="hiden-input"
-          ref="fileInput"
-          accept="image/*"
-        />
-        <vs-avatar @click="pickAvatar" class="cp" size="70" circle>
-          <img
-            :src="src"
-            alt=""
-          />
-        </vs-avatar> -->
       </div>
 
       <vs-input
@@ -120,7 +105,7 @@ export default {
     return {
       src_avatar: "",
       user: {
-        avatar: "",
+        avatar: false,
         name: "",
         email: "",
         pass: "",
@@ -144,27 +129,30 @@ export default {
       const fr = new FileReader();
       fr.addEventListener("load", () => {
         this.src_avatar = fr.result;
+        this.user.avatar = true;
       });
 
       fr.readAsDataURL(files[0]);
     },
 
-    async onUploadAvatar(){
+    async onUploadAvatar() {
       const fd = new FormData();
-      fd.append('avatar', this.imageData);
-
-      // console.log(this.imageData)
-
-      // console.log(fd);
+      fd.append("avatar", this.imageData);
 
       const response = await this.uploadAvatar(fd);
 
-      console.log(response)
+      return response;
     },
 
     async sendForm() {
       try {
         this.loading = true;
+
+        if (this.user.avatar) {
+          const url = await this.onUploadAvatar();
+
+          this.user.avatar = url.data;
+        }
 
         const user = await this.signup(this.user);
 
@@ -175,7 +163,7 @@ export default {
           position: "top-center",
           title: `Hey, ${user.data.user.name}!`,
           text:
-            "Seja bem-vindo(a), enviamos um email de verificação para o seu e-mail...por favor, quando puder efetue a confirmação! Agradecemos pelo cadastro.",
+            "Seja bem-vindo(a)! Agradecemos pelo cadastro.",
         });
 
         this.loading = false;
