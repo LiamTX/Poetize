@@ -3,10 +3,9 @@
     <!-- <NavBar /> -->
     <vs-row>
       <vs-row class="mt-20" justify="center" direction="column">
-        <vs-input dark placeholder="Titulo" v-model="poem.title">
-        </vs-input>
+        <vs-input dark placeholder="Titulo" v-model="poem.title"> </vs-input>
 
-        <div class="ac">
+        <!-- <div class="ac">
           <v-textarea
             class="mt-2"
             color="black"
@@ -16,7 +15,18 @@
             auto-grow
             v-model="poem.poem"
           ></v-textarea>
-        </div>
+        </div> -->
+
+        <v-col class="ac" cols="12" md="3">
+          <v-textarea
+            color="black"
+            filled
+            name="input-7-4"
+            label="Poema"
+            v-model="poem.poem"
+            auto-grow
+          ></v-textarea>
+        </v-col>
 
         <small class="ac">Seja autêntico...*</small>
 

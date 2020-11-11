@@ -6,7 +6,10 @@
         <vs-row v-if="!edit" justify="center" direction="column">
           <div class="ac">
             <vs-avatar disabled size="70" circle class="cp">
-              <img :src="src_avatar" alt="" />
+              <template v-if="src_avatar == ''" icon>
+                <i class="bx bx-user"></i>
+              </template>
+              <img v-else :src="src_avatar" alt="" />
             </vs-avatar>
           </div>
 
@@ -148,14 +151,29 @@
             Cancelar
           </vs-button>
         </vs-row>
-
-        <vs-row justify="center">
-          <div v-for="poem in poems" :key="poem.id">
-            <PoemCard :data="poem" />
-          </div>
-        </vs-row>
       </vs-row>
     </vs-row>
+    <v-divider class="mt-5 mb-5"></v-divider>
+    <div v-if="poems.length > 0">
+      <h2 class="alg-txt-c">Seus poemas</h2>
+      <v-row no-gutters>
+        <v-col
+          class="mb-4"
+          v-for="poem in poems"
+          :key="poem.id"
+          cols="12"
+          sm="4"
+        >
+          <PoemCard :data="poem" />
+        </v-col>
+      </v-row>
+    </div>
+    <div v-else>
+      <h2 class="alg-txt-c">Você ainda não tem poemas cadastrados</h2>
+      <vs-button to="/Poem" class="button ac" dark :active="active == 1"
+        >Cadastre novo um poema</vs-button
+      >
+    </div>
   </div>
 </template>
 
@@ -200,7 +218,6 @@ export default {
 
       await this.getThisUser();
       await this.getMyPoems();
-      console.log(".");
 
       this.src_avatar = this.$store.state.VuexProfile.user.avatar;
       this.user.avatar = this.$store.state.VuexProfile.user.avatar;
@@ -241,7 +258,7 @@ export default {
           this.user.avatar = url.data;
         }
 
-        if (this.new_password) {
+        if (this.new_password !== "") {
           if (this.new_password !== this.confirm_password) {
             this.$vs.notification({
               duration: "10000",
@@ -260,7 +277,7 @@ export default {
             return;
           }
 
-          if (this.new_password == "" || this.confirm_password == "") {
+          if (this.confirm_password == "" || this.new_password == "") {
             this.$vs.notification({
               duration: "10000",
               progress: "auto",

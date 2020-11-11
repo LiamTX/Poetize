@@ -26,11 +26,11 @@ export default {
     }),
     async index() {
       const loading = this.$vs.loading({
-        text: 'Loading...',
+        text: "Loading...",
         background: "dark",
         color: "#fff",
       });
-      
+
       await this.getPoems();
 
       loading.close();

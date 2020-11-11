@@ -10,7 +10,10 @@
           accept="image/*"
         />
         <vs-avatar @click="$refs.fileInput.click()" size="70" circle class="cp">
-          <img :src="src_avatar" alt="" />
+          <template v-if="src_avatar == ''" icon>
+            <i class="bx bx-user"></i>
+          </template>
+          <img v-else :src="src_avatar" alt="" />
         </vs-avatar>
       </div>
 
@@ -162,8 +165,7 @@ export default {
           color: "success",
           position: "top-center",
           title: `Hey, ${user.data.user.name}!`,
-          text:
-            "Seja bem-vindo(a)! Agradecemos pelo cadastro.",
+          text: "Seja bem-vindo(a)! Agradecemos pelo cadastro.",
         });
 
         this.loading = false;
