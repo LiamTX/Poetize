@@ -11,6 +11,9 @@ export default {
     mutations: {
         setPoems(state, data){
             state.poems = data
+        },
+        deletePoem(state, data){
+            state.poems.splice(data, 1);
         }
     },
     actions: {

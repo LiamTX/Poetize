@@ -153,7 +153,7 @@
       <template #footer>
         <vs-row justify="space-between">
           <vs-avatar class="cp">
-            <template v-if="avatar == ''" icon>
+            <template v-if="avatar == 0" icon>
               <i class="bx bx-user"></i>
             </template>
             <img v-else :src="avatar" alt="avatar" />

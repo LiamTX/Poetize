@@ -6,7 +6,7 @@
         <vs-row v-if="!edit" justify="center" direction="column">
           <div class="ac">
             <vs-avatar disabled size="70" circle class="cp">
-              <template v-if="src_avatar == ''" icon>
+              <template v-if="src_avatar == 0" icon>
                 <i class="bx bx-user"></i>
               </template>
               <img v-else :src="src_avatar" alt="" />
@@ -57,7 +57,10 @@
               circle
               class="cp"
             >
-              <img :src="src_avatar" alt="" />
+              <template v-if="src_avatar == 0" icon>
+                <i class="bx bx-user"></i>
+              </template>
+              <img v-else :src="src_avatar" alt="" />
             </vs-avatar>
           </div>
 
@@ -164,7 +167,7 @@
           cols="12"
           sm="4"
         >
-          <PoemCard :data="poem" />
+          <PoemCard :data="poem" @deleted="deleted($event)" />
         </v-col>
       </v-row>
     </div>
@@ -178,7 +181,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapMutations } from "vuex";
 import PoemCard from "@/components/PoemCard";
 
 export default {
@@ -203,12 +206,18 @@ export default {
   },
 
   methods: {
+    ...mapMutations({
+      deletePoem: "VuexProfile/deletePoem",
+    }),
     ...mapActions({
       getThisUser: "VuexProfile/getThisUser",
       getMyPoems: "VuexProfile/getMyPoems",
       update: "VuexProfile/update",
       uploadAvatar: "uploadAvatar",
     }),
+    async deleted(poem) {
+      this.deletePoem(poem);
+    },
     async index() {
       const loading = this.$vs.loading({
         text: "Loading...",

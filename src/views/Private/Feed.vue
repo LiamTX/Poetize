@@ -4,7 +4,7 @@
     <!-- <Loading/> -->
     <v-row class="mt-7" no-gutters>
       <v-col v-for="data in poemsData" :key="data.id" cols="12" sm="4">
-        <PoemCard :data="data" />
+        <PoemCard :data="data" @deleted="deleted($event)"/>
       </v-col>
     </v-row>
   </div>
@@ -13,7 +13,7 @@
 <script>
 import PoemCard from "@/components/PoemCard.vue";
 // import Loading from '@/components/Loading.vue'
-import { mapActions, mapGetters } from "vuex";
+import { mapActions, mapGetters, mapMutations } from "vuex";
 
 export default {
   components: { PoemCard },
@@ -21,6 +21,9 @@ export default {
     return {};
   },
   methods: {
+    ...mapMutations({
+      deletePoem: "VuexFeed/deletePoem"
+    }),
     ...mapActions({
       getPoems: "VuexFeed/getPoems",
     }),
@@ -35,6 +38,9 @@ export default {
 
       loading.close();
     },
+    async deleted(poem){
+      this.deletePoem(poem);
+    }
   },
   async created() {
     await this.index();
