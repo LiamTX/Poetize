@@ -11,7 +11,7 @@ import vuetify from './plugins/vuetify';
 
 Vue.use(Vuesax, {
   colors: {
-    primary: 'black',
+    primary: '#fff',
     danger: '#8B0000',
     success: '#228B22'
   }

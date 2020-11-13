@@ -227,6 +227,22 @@
     }
 
 }
+
+.ml-11{
+    margin-left: 110px;
+
+    @media screen and(max-width: 800px){
+        margin-left: 60px;
+    }
+}
+
+.ml-12{
+    margin-left: 120px;
+
+    @media screen and (max-width: 900px){
+        margin-left: 50px;
+    }
+}
 // ============== MARGINS LEFT ==============
 
 

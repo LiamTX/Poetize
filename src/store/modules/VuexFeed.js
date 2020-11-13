@@ -14,6 +14,12 @@ export default {
         },
         deletePoem(state, data){
             state.poems.splice(data, 1);
+        },
+        olderPoems(state){
+            state.poems.reverse();
+        },
+        youngerPoems(state){
+            state.poems.reverse();
         }
     },
     actions: {

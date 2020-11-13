@@ -108,6 +108,8 @@ export default {
       this.poem.poem = "";
 
       this.loading = false;
+
+      this.$router.push('/Feed')
     },
   },
 };

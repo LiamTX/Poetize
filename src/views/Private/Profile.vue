@@ -106,7 +106,7 @@
 
             <template #footer>
               <div class="con-footer">
-                <vs-button @click="active3 = false" transparent> Ok </vs-button>
+                <vs-button @click="active3 = false" dark transparent> Ok </vs-button>
                 <vs-button @click="active3 = false" dark transparent>
                   Cancel
                 </vs-button>
