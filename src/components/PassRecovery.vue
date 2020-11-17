@@ -33,7 +33,7 @@
 
       <template #footer>
         <div class="con-footer">
-          <vs-button v-if="!loading" @click="forgotPassword()" transparent>
+          <vs-button v-if="!loading" @click="forgotPassword()" dark transparent>
             Enviar
           </vs-button>
           <vs-button v-else dark loading transparent> Enviar </vs-button>
@@ -65,7 +65,7 @@
 
       <template #footer>
         <div class="con-footer">
-          <vs-button v-if="!loading" @click="resetPassword()" transparent>
+          <vs-button v-if="!loading" @click="resetPassword()" dark transparent>
             Enviar
           </vs-button>
           <vs-button v-else dark loading transparent> Enviar </vs-button>

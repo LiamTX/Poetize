@@ -1,7 +1,7 @@
 <template >
   <div>
     <vs-row>
-      <vs-row class="mt-20" justify="center" direction="column">
+      <vs-row class="mt-20" justify="center" direction="column"> 
         <!-- Disable -->
         <vs-row v-if="!edit" justify="center" direction="column">
           <div class="ac">
@@ -106,7 +106,9 @@
 
             <template #footer>
               <div class="con-footer">
-                <vs-button @click="active3 = false" dark transparent> Ok </vs-button>
+                <vs-button @click="active3 = false" dark transparent>
+                  Ok
+                </vs-button>
                 <vs-button @click="active3 = false" dark transparent>
                   Cancel
                 </vs-button>
@@ -183,6 +185,7 @@
 <script>
 import { mapActions, mapMutations } from "vuex";
 import PoemCard from "@/components/PoemCard";
+// import YourLikes from "@/components/YourLikes";
 
 export default {
   components: { PoemCard },

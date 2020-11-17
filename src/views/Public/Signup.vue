@@ -1,6 +1,12 @@
 <template>
   <vs-row>
     <vs-row class="mt-20" justify="center" direction="column">
+      <div class="ac button">
+        <v-btn icon class="" to="/Login">
+          <v-icon class="">mdi-arrow-left</v-icon>
+        </v-btn>
+      </div>
+
       <div class="ac">
         <input
           ref="fileInput"
@@ -65,6 +71,8 @@
           Secure password
         </template>
       </vs-input>
+
+      <small class="ac mt-2">Insira um e-mail existente *</small>
 
       <vs-row class="mt-2" justify="center">
         <vs-button
@@ -151,6 +159,20 @@ export default {
       try {
         this.loading = true;
 
+        if (!this.validEmail) {
+          this.$vs.notification({
+            duration: "none",
+            progress: "auto",
+            color: "danger",
+            position: "top-center",
+            title: `Ops!`,
+            text: "Insira um e-mail valido.",
+          });
+
+          this.loading = false;
+          return;
+        }
+
         if (this.user.avatar) {
           const url = await this.onUploadAvatar();
 
@@ -186,6 +208,8 @@ export default {
             text: "Este e-mail já está sendo usado, tente outro.",
           });
         }
+
+        return;
       }
     },
   },

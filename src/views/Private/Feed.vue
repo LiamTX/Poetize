@@ -3,7 +3,7 @@
     <!-- <NavBar /> -->
     <!-- <Loading/> -->
 
-    <vs-row class="mt-15 ml-12">
+    <vs-row class="mt-14 ml-12">
       <vs-select dark placeholder="Select" v-model="value">
         <vs-option label="Mais novos" value="1"> Mais novos </vs-option>
         <vs-option label="Mais antigos" value="2"> Mais antigos </vs-option>
@@ -72,7 +72,7 @@ export default {
       if (val == 2) {
         this.olderPoems();
       }else if(val == 1){
-        this.youngerPoems()
+        this.youngerPoems();
       }
     },
   },

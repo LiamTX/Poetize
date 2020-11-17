@@ -10,26 +10,25 @@
 
     <v-card-actions>
       <vs-button v-if="!liked" @click="dolike(data.id)" danger icon>
-        <i class="bx bx-heart"></i>
+        <i v-if="likesLength > 0" class="bx bx-heart">{{ likesLength }}</i>
+        <i v-else class="bx bx-heart"></i>
       </vs-button>
 
       <vs-button v-else @click="dodislike(data.id)" danger icon>
-        <i class="bx bxs-heart"></i>
+        <i v-if="likesLength > 0" class="bx bxs-heart">{{ likesLength }}</i>
+        <i v-else class="bx bxs-heart"></i>
       </vs-button>
 
       <v-btn icon @click="show = !show" class="alg-txt-e">
         <v-icon>{{ show ? "mdi-chevron-up" : "mdi-chevron-down" }}</v-icon>
       </v-btn>
 
-      <v-btn
-        v-if="user_id == data.user_id.id"
-        @click="active1 = true"
-        color="red"
-        class="ml-a"
-        icon
-      >
-        <v-icon>mdi-delete</v-icon>
-      </v-btn>
+      <vs-tooltip v-if="user_id == data.user_id.id">
+        <v-btn @click="active1 = true" color="red" class="ml-a" icon>
+          <v-icon>mdi-delete</v-icon>
+        </v-btn>
+        <template #tooltip> Deletar </template>
+      </vs-tooltip>
 
       <vs-dialog width="550px" not-center v-model="active1">
         <template #header>
@@ -94,6 +93,7 @@ export default {
       active1: false,
       show: false,
       loading: false,
+      likesLength: 0,
     };
   },
   methods: {
@@ -103,11 +103,13 @@ export default {
       getThisUser: "VuexProfile/getThisUser",
       getMyLikes: "VuexProfile/getMyLikes",
       delete: "VuexPoem/delete",
+      getThisLikes: "VuexPoem/getThisLikes",
     }),
     async dolike(poem_id) {
       try {
         const response = await this.like(poem_id);
 
+        this.likesLength += 1;
         this.liked = true;
       } catch (error) {
         console.log(error);
@@ -117,6 +119,7 @@ export default {
       try {
         const response = await this.dislike(poem_id);
 
+        this.likesLength -= 1;
         this.liked = false;
       } catch (error) {
         console.log(error);
@@ -139,6 +142,7 @@ export default {
     },
     async index() {
       const response = await this.getMyLikes();
+      await this.getThisLikes(this.data.id);
       const likes = response.data;
 
       this.user_id = this.$store.state.VuexProfile.user.id;
@@ -152,11 +156,23 @@ export default {
           this.liked = true;
         }
       }
+
+      this.likesLength = this.thisLikes.length;
+
+      // for(let i = 0; i < this.thisLikes.length; i++){
+
+      // }
     },
   },
   async created() {
     await this.getThisUser();
     await this.index();
+    console.log(this.data.poem.split("\n"));
+  },
+  computed: {
+    thisLikes() {
+      return this.$store.state.VuexPoem.likes;
+    },
   },
 };
 </script>

@@ -6,6 +6,7 @@ export default {
         user: '',
         poems: '',
         likes: '',
+        myLikes: [],
     },
     getters: {
 
@@ -22,6 +23,9 @@ export default {
         },
         deletePoem(state, data){
             state.poems.splice(data, 1);
+        },
+        setMyLikes(state, data){
+            state.myLikes = data;
         }
     },
     actions: {
@@ -42,6 +46,8 @@ export default {
         },
         async getMyLikes(context){
             const response = await axios.get(process.env.VUE_APP_BASE_URL + '/users/likes');
+
+            await context.commit('setMyLikes', response.data);
 
             return response;
         }

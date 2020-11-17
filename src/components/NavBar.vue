@@ -50,6 +50,12 @@
         </template>
         Perfil
       </vs-sidebar-item>
+      <vs-sidebar-item id="faq" to="/Help">
+        <template #icon>
+          <i class="bx bx-info-circle"></i>
+        </template>
+        Ajude-nos
+      </vs-sidebar-item>
       <!-- <vs-sidebar-item id="Music">
         <template #icon>
           <i class="bx bxs-music"></i>

@@ -20,6 +20,9 @@ export default {
         },
         youngerPoems(state){
             state.poems.reverse();
+        },
+        mostLikedPoems(state){
+            
         }
     },
     actions: {

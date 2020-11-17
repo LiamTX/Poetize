@@ -6,6 +6,7 @@ import VuexLogin from './modules/VuexLogin'
 import VuexFeed from './modules/VuexFeed'
 import VuexPoem from './modules/VuexPoem'
 import VuexProfile from './modules/VuexProfile'
+import VuexFAQ from './modules/VuexFAQ'
 
 import axios from '../utils/axios'
 
@@ -38,6 +39,7 @@ export default new Vuex.Store({
     VuexLogin,
     VuexFeed,
     VuexPoem,
-    VuexProfile
+    VuexProfile,
+    VuexFAQ
   }
 })
