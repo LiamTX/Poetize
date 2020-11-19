@@ -1,11 +1,20 @@
 <template>
   <v-carousel height="100%">
+    <div  class="alg-txt-e">
+      <v-btn to="/Login" class="mt-1 mr-1" depressed>
+        Skip
+        <v-icon>
+          mdi-arrow-right
+        </v-icon>
+      </v-btn>
+    </div>
+
     <v-carousel-item
       reverse-transition="fade-transition"
       transition="fade-transition"
     >
       <v-img
-      class="ac mt-20"
+        class="ac mt-20"
         lazy-src="../../images/teste.svg"
         max-height="220"
         max-width="250"
@@ -13,9 +22,12 @@
       ></v-img>
 
       <div>
-          <h3 color="black" class="alg-txt-c">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam et quia tempora animi reprehenderit nobis magnam ipsa? Quae voluptate reiciendis velit earum exercitationem suscipit, doloremque consequatur perferendis voluptates possimus id.
-          </h3>
+        <h3 color="black" class="alg-txt-c">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam
+          et quia tempora animi reprehenderit nobis magnam ipsa? Quae voluptate
+          reiciendis velit earum exercitationem suscipit, doloremque consequatur
+          perferendis voluptates possimus id.
+        </h3>
       </div>
     </v-carousel-item>
     <v-carousel-item
@@ -132,7 +144,7 @@ export default {
 };
 </script>
 <style>
-h3{
-    color: black;
+h3 {
+  color: black;
 }
 </style>

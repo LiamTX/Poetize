@@ -1,7 +1,7 @@
 <template >
   <div>
     <vs-row>
-      <vs-row class="mt-20" justify="center" direction="column"> 
+      <vs-row class="mt-20" justify="center" direction="column">
         <!-- Disable -->
         <vs-row v-if="!edit" justify="center" direction="column">
           <div class="ac">
@@ -159,25 +159,61 @@
       </vs-row>
     </vs-row>
     <v-divider class="mt-5 mb-5"></v-divider>
-    <div v-if="poems.length > 0">
-      <h2 class="alg-txt-c">Seus poemas</h2>
-      <v-row no-gutters>
-        <v-col
-          class="mb-4"
-          v-for="poem in poems"
-          :key="poem.id"
-          cols="12"
-          sm="4"
+
+    <vs-row>
+      <vs-select class="ac" dark placeholder="Select" v-model="value">
+        <vs-option label="Seus poemas" value="1"> Seus poemas </vs-option>
+        <vs-option label="Você curtiu" value="2"> Você curtiu </vs-option>
+        <!-- <vs-option label="Mais curtidos" value="3"> Mais curtidos </vs-option> -->
+        <!-- <vs-option disabled label="Sass" value="4"> Sass </vs-option>
+        <vs-option label="Typescript" value="5"> Typescript </vs-option>
+        <vs-option label="Webpack" value="6"> Webpack </vs-option>
+        <vs-option label="Nodejs" value="7"> Nodejs </vs-option> -->
+      </vs-select>
+    </vs-row>
+
+    <div v-if="value == 1">
+      <div v-if="poems.length > 0" class="mt-2">
+        <v-row no-gutters>
+          <v-col
+            class="mb-4"
+            v-for="poem in poems"
+            :key="poem.id"
+            cols="12"
+            sm="4"
+          >
+            <PoemCard :data="poem" @deleted="deleted($event)" />
+          </v-col>
+        </v-row>
+      </div>
+      <div v-else class="mt-4">
+        <h2 class="alg-txt-c">Você ainda não tem poemas cadastrados</h2>
+        <vs-button to="/Poem" class="button ac" dark :active="active == 1"
+          >Cadastre novo um poema</vs-button
         >
-          <PoemCard :data="poem" @deleted="deleted($event)" />
-        </v-col>
-      </v-row>
+      </div>
     </div>
-    <div v-else>
-      <h2 class="alg-txt-c">Você ainda não tem poemas cadastrados</h2>
-      <vs-button to="/Poem" class="button ac" dark :active="active == 1"
-        >Cadastre novo um poema</vs-button
-      >
+
+    <div v-else-if="value == 2">
+      <div v-if="myLikes.length > 0" class="mt-2">
+        <v-row no-gutters>
+          <v-col
+            class="mb-4"
+            v-for="poem in poemsLiked"
+            :key="'a' + poem.id"
+            cols="12"
+            sm="4"
+          >
+            <PoemCard :data="poem" @deleted="deleted($event)" />
+          </v-col>
+        </v-row>
+      </div>
+      <div v-else class="mt-4">
+        <h2 class="alg-txt-c">Você ainda não curtiu nenhum poema.</h2>
+        <vs-button to="/Feed" class="button ac" dark :active="active == 1"
+          >Explore novos poemas</vs-button
+        >
+      </div>
     </div>
   </div>
 </template>
@@ -191,6 +227,7 @@ export default {
   components: { PoemCard },
   data() {
     return {
+      value: 1,
       active3: false,
       active: 0,
       loading: false,
@@ -205,6 +242,7 @@ export default {
       new_password: "",
       confirm_password: "",
       poems: "",
+      poemsLiked: []
     };
   },
 
@@ -213,10 +251,12 @@ export default {
       deletePoem: "VuexProfile/deletePoem",
     }),
     ...mapActions({
+      getMyLikes: "VuexProfile/getMyLikes",
       getThisUser: "VuexProfile/getThisUser",
       getMyPoems: "VuexProfile/getMyPoems",
       update: "VuexProfile/update",
       uploadAvatar: "uploadAvatar",
+      getPoemById: "VuexProfile/getPoemById",
     }),
     async deleted(poem) {
       this.deletePoem(poem);
@@ -230,6 +270,19 @@ export default {
 
       await this.getThisUser();
       await this.getMyPoems();
+      await this.getMyLikes();
+
+      // console.log(this.myLikes)
+
+
+      if (this.myLikes.length > 0) {
+        for (let i = 0; i < this.myLikes.length; i++) {
+          let poem = await this.getPoemById(this.myLikes[i].poem_id);
+          this.poemsLiked.push(poem.data);
+        }
+      }
+
+      // console.log(this.poemsLiked)
 
       this.src_avatar = this.$store.state.VuexProfile.user.avatar;
       this.user.avatar = this.$store.state.VuexProfile.user.avatar;
@@ -335,8 +388,17 @@ export default {
     },
   },
 
-  created() {
-    this.index();
+  computed: {
+    myLikes() {
+      return this.$store.state.VuexProfile.myLikes;
+    },
+      // poemsLiked() {
+      //   return this.$store.state.VuexProfile.poemsLiked;
+      // },
+  },
+
+  async created() {
+    await this.index();
   },
 };
 </script>

@@ -1,11 +1,16 @@
 <template>
   <vs-row class="mt-20" justify="center" direction="column">
+    <div class="ac button mb-2">
+      <v-btn icon class="" to="/">
+        <v-icon class="">mdi-arrow-left</v-icon>
+      </v-btn>
+    </div>
     <vs-input icon-after dark v-model="user.email" placeholder="E-mail">
       <template #icon>
         <i class="bx bx-user"></i>
       </template>
     </vs-input>
-    
+
     <vs-input
       dark
       class="mt-2"

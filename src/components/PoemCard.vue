@@ -9,12 +9,24 @@
     </v-card-subtitle>
 
     <v-card-actions>
-      <vs-button v-if="!liked" @click="dolike(data.id)" danger icon>
+      <vs-button
+        v-if="!liked"
+        :loading="apiLoading"
+        @click="dolike(data.id)"
+        danger
+        icon
+      >
         <i v-if="likesLength > 0" class="bx bx-heart">{{ likesLength }}</i>
         <i v-else class="bx bx-heart"></i>
       </vs-button>
 
-      <vs-button v-else @click="dodislike(data.id)" danger icon>
+      <vs-button
+        v-else
+        @click="dodislike(data.id)"
+        :loading="apiLoading"
+        danger
+        icon
+      >
         <i v-if="likesLength > 0" class="bx bxs-heart">{{ likesLength }}</i>
         <i v-else class="bx bxs-heart"></i>
       </vs-button>
@@ -107,20 +119,24 @@ export default {
     }),
     async dolike(poem_id) {
       try {
+        this.$store.commit("setApiLoading", true);
         const response = await this.like(poem_id);
 
         this.likesLength += 1;
         this.liked = true;
+        this.$store.commit("setApiLoading", false);
       } catch (error) {
         console.log(error);
       }
     },
     async dodislike(poem_id) {
       try {
+        this.$store.commit("setApiLoading", true);
         const response = await this.dislike(poem_id);
 
         this.likesLength -= 1;
         this.liked = false;
+        this.$store.commit("setApiLoading", false);
       } catch (error) {
         console.log(error);
       }
@@ -141,9 +157,10 @@ export default {
       }
     },
     async index() {
+      this.$store.commit("setApiLoading", true);
       const response = await this.getMyLikes();
-      await this.getThisLikes(this.data.id);
       const likes = response.data;
+      await this.getThisLikes(this.data.id);
 
       this.user_id = this.$store.state.VuexProfile.user.id;
 
@@ -159,17 +176,18 @@ export default {
 
       this.likesLength = this.thisLikes.length;
 
-      // for(let i = 0; i < this.thisLikes.length; i++){
-
-      // }
+      this.$store.commit("setApiLoading", false);
     },
   },
   async created() {
     await this.getThisUser();
     await this.index();
-    console.log(this.data.poem.split("\n"));
+    // console.log(this.data.poem.split("\n"));
   },
   computed: {
+    apiLoading() {
+      return this.$store.state.apiLoading;
+    },
     thisLikes() {
       return this.$store.state.VuexPoem.likes;
     },

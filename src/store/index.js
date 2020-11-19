@@ -14,12 +14,17 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    apiLoading: false
     // user: ''
   },
   mutations: {
     // setUser(state, data){
     //   state.user = data
     // }
+
+    setApiLoading(state, data){
+      state.apiLoading = data;
+    }
   },
   actions: {
     // async getThisUser(context){

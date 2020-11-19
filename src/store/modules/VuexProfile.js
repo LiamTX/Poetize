@@ -7,6 +7,7 @@ export default {
         poems: '',
         likes: '',
         myLikes: [],
+        // poemsLiked: []
     },
     getters: {
 
@@ -15,18 +16,18 @@ export default {
         setUser(state, data) {
             state.user = data
         },
-        setPoems(state, data){
+        setPoems(state, data) {
             state.poems = data;
         },
-        setLikes(state, data){
+        setLikes(state, data) {
             state.poems = data;
         },
-        deletePoem(state, data){
+        deletePoem(state, data) {
             state.poems.splice(data, 1);
         },
-        setMyLikes(state, data){
+        setMyLikes(state, data) {
             state.myLikes = data;
-        }
+        },
     },
     actions: {
         async getThisUser(context) {
@@ -34,22 +35,29 @@ export default {
 
             await context.commit('setUser', user.data);
         },
-        async getMyPoems(context){
+        async getMyPoems(context) {
             const poems = await axios.get(process.env.VUE_APP_BASE_URL + '/poems/my');
 
-            await context.commit('setPoems', poems.data);           
+            await context.commit('setPoems', poems.data);
         },
         async update(context, data) {
             const response = await axios.put(process.env.VUE_APP_BASE_URL + '/users', data);
 
             return response;
         },
-        async getMyLikes(context){
+        async getMyLikes(context) {
             const response = await axios.get(process.env.VUE_APP_BASE_URL + '/users/likes');
 
             await context.commit('setMyLikes', response.data);
 
             return response;
+        },
+        async getPoemById(context, data) {
+            const poem = await axios.get(process.env.VUE_APP_BASE_URL + `/poems/${data}`);
+
+            // await context.commit('setPoemsLiked', poem.data);
+
+            return poem;
         }
     }
 }

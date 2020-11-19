@@ -7,7 +7,7 @@
       <vs-select dark placeholder="Select" v-model="value">
         <vs-option label="Mais novos" value="1"> Mais novos </vs-option>
         <vs-option label="Mais antigos" value="2"> Mais antigos </vs-option>
-        <vs-option label="Mais curtidos" value="3"> Mais curtidos </vs-option>
+        <!-- <vs-option label="Mais curtidos" value="3"> Mais curtidos </vs-option> -->
         <!-- <vs-option disabled label="Sass" value="4"> Sass </vs-option>
         <vs-option label="Typescript" value="5"> Typescript </vs-option>
         <vs-option label="Webpack" value="6"> Webpack </vs-option>

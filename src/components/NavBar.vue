@@ -18,9 +18,6 @@
       <vs-navbar-item :active="active == 'license'" id="license">
         license
       </vs-navbar-item> -->
-      <template #right>
-        <h2>Poetize</h2>
-      </template>
     </vs-navbar>
     <vs-sidebar
       background="dark"
@@ -29,8 +26,8 @@
       :open.sync="activeSidebar"
     >
       <template #logo>
-        <img src="" alt="" />
-        Poetize
+        <img src="../assets/logo.png" alt="Poeize">
+        
       </template>
       <vs-sidebar-item id="feed" to="/Feed">
         <template #icon>
@@ -178,7 +175,19 @@ export default {
     avatar: "",
     active: "",
     activeSidebar: false,
+    url: ""
   }),
+
+  watch: {
+    $route(to, from){
+      let path = to.path;
+
+      if(path == '/Feed') this.active = 'feed';
+      if(path == '/Poem') this.active = 'new_poem';
+      if(path == '/Profile') this.active = 'profile';
+      if(path == '/Help') this.active = 'faq';
+    }
+  },
 
   methods: {
     ...mapActions({

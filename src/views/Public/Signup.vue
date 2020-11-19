@@ -72,8 +72,6 @@
         </template>
       </vs-input>
 
-      <small class="ac mt-2">Insira um e-mail existente *</small>
-
       <vs-row class="mt-2" justify="center">
         <vs-button
           v-if="!loading"
@@ -114,6 +112,7 @@ export default {
   components: { NavBar },
   data() {
     return {
+      img: "",
       src_avatar: "",
       user: {
         avatar: false,
@@ -124,6 +123,7 @@ export default {
       active: 0,
       loading: false,
       hasVisiblePassword: false,
+      userAvatar: "",
     };
   },
   methods: {
@@ -141,6 +141,7 @@ export default {
       fr.addEventListener("load", () => {
         this.src_avatar = fr.result;
         this.user.avatar = true;
+        this.img = fr.result;
       });
 
       fr.readAsDataURL(files[0]);
