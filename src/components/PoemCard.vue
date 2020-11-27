@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto mt-10" max-width="400" dark>
+  <v-card class="mx-auto mt-10 this-card mb-1" dark>
     <v-card-title>
       {{ data.title }}
     </v-card-title>
@@ -86,7 +86,7 @@
         <v-divider></v-divider>
 
         <v-card-text class="pre-formatted" style="line-height=150%">
-          {{ data.poem }}
+          <span v-html="data.poem"></span>
         </v-card-text>
       </div>
     </v-expand-transition>
@@ -176,6 +176,9 @@ export default {
 
       this.likesLength = this.thisLikes.length;
 
+      let filtred = this.data.poem.split("\n");
+      this.data.poem = await filtred.join(" <br/> ");
+
       this.$store.commit("setApiLoading", false);
     },
   },
@@ -196,6 +199,15 @@ export default {
 </script>
 
 <style lang="stylus" >
+.this-card {
+  max-width: 400px;
+
+  @media screen and (max-width: 1210px) {
+    max-width: 330px;
+
+  }
+}
+
 getColor(vsColor, alpha = 1) {
   unquote('rgba(var(--vs-' + vsColor + '), ' + alpha + ')');
 }

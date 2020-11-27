@@ -19,7 +19,14 @@
           <template v-if="src_avatar == ''" icon>
             <i class="bx bx-user"></i>
           </template>
-          <img v-else :src="src_avatar" alt="" />
+          <img
+            v-else
+            :src="src_avatar"
+            alt="avatar"
+            :lazy-src="src_avatar"
+            width="109"
+            height="153"
+          />
         </vs-avatar>
       </div>
 
@@ -28,7 +35,7 @@
         icon-after
         dark
         v-model="user.name"
-        placeholder="Nome"
+        placeholder="Nome/Nick"
       >
         <template #icon>
           <i class="bx bx-user"></i>
@@ -137,6 +144,10 @@ export default {
       let fileName = files[0].name;
       this.imageData = event.target.files[0];
 
+      // files[0].size = 922534
+
+      console.log(files[0]);
+
       const fr = new FileReader();
       fr.addEventListener("load", () => {
         this.src_avatar = fr.result;
@@ -160,14 +171,39 @@ export default {
       try {
         this.loading = true;
 
+        if (this.user.name == "") {
+          this.$vs.notification({
+            progress: "auto",
+            color: "danger",
+            position: "top-center",
+            title: `Ops!`,
+            text: "Insira seu nome/nick.",
+          });
+
+          this.loading = false;
+          return;
+        }
+
         if (!this.validEmail) {
           this.$vs.notification({
-            duration: "none",
             progress: "auto",
             color: "danger",
             position: "top-center",
             title: `Ops!`,
             text: "Insira um e-mail valido.",
+          });
+
+          this.loading = false;
+          return;
+        }
+
+        if (this.user.pass == "") {
+          this.$vs.notification({
+            progress: "auto",
+            color: "danger",
+            position: "top-center",
+            title: `Ops!`,
+            text: "Insira sua senha.",
           });
 
           this.loading = false;
@@ -258,3 +294,11 @@ export default {
   },
 };
 </script>
+
+<style>
+.cropper {
+  height: 300px;
+  width: 200px;
+  background: #ddd;
+}
+</style>

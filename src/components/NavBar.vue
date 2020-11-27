@@ -26,7 +26,7 @@
       :open.sync="activeSidebar"
     >
       <template #logo>
-        <img src="../assets/logo.png" alt="Poeize">
+        <img src="../assets/images/logo.png" alt="Poetize" class="cp">
         
       </template>
       <vs-sidebar-item id="feed" to="/Feed">

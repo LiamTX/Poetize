@@ -1,77 +1,122 @@
 <template>
-  <v-carousel height="100%">
-    <div  class="alg-txt-e">
+  <v-carousel cycle height="100%">
+    <div class="alg-txt-e">
       <v-btn to="/Login" class="mt-1 mr-1" depressed>
         Skip
-        <v-icon>
-          mdi-arrow-right
-        </v-icon>
+        <v-icon> mdi-arrow-right </v-icon>
       </v-btn>
     </div>
 
     <v-carousel-item
-      reverse-transition="fade-transition"
-      transition="fade-transition"
+
     >
-      <v-img
+      <!-- <v-img
         class="ac mt-20"
         lazy-src="../../images/teste.svg"
         max-height="220"
         max-width="250"
         src="../../images/teste.svg"
+      ></v-img> -->
+
+      <v-img
+        class="ac mt-20"
+        lazy-src="../../assets/images/v-carousel-item-9.svg"
+        max-height="220"
+        max-width="250"
+        src="../../assets/images/v-carousel-item-9.svg"
       ></v-img>
 
-      <div>
+      <div class="mt-2 ml-3 mr-3">
         <h3 color="black" class="alg-txt-c">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam
-          et quia tempora animi reprehenderit nobis magnam ipsa? Quae voluptate
-          reiciendis velit earum exercitationem suscipit, doloremque consequatur
-          perferendis voluptates possimus id.
+          Se você é alguem que ama poemas, e adoraria poder compartilhar as suas
+          ideias ou simplismente gostaria apreciar poemas alheios...venha para o
+          poetize!
         </h3>
       </div>
     </v-carousel-item>
     <v-carousel-item
-      reverse-transition="fade-transition"
-      transition="fade-transition"
+
     >
-      <v-img
+      <!-- <v-img
         lazy-src="../../images/teste2.svg"
         max-height="200"
         max-width="250"
         src="../../images/teste2.svg"
-      ></v-img>
-    </v-carousel-item>
-    <v-carousel-item
-      reverse-transition="fade-transition"
-      transition="fade-transition"
-    >
+      ></v-img> -->
       <v-img
-        lazy-src="../../images/teste3.svg"
-        max-height="270"
-        max-width="250"
-        src="../../images/teste3.svg"
-      ></v-img>
-    </v-carousel-item>
-    <v-carousel-item
-      reverse-transition="fade-transition"
-      transition="fade-transition"
-    >
-      <v-img
-        lazy-src="../../images/teste4.svg"
+        class="ac mt-5"
+        lazy-src="../../assets/images/v-carousel-item-4.svg"
         max-height="500"
         max-width="250"
-        src="../../images/teste4.svg"
+        src="../../assets/images/v-carousel-item-4.svg"
       ></v-img>
+
+      <div class="mt-2 ml-3 mr-3">
+        <h3 color="black" class="alg-txt-c">
+          Aqui você pode compartilhar suas invenções para todos adoradores de
+          poemas
+        </h3>
+      </div>
     </v-carousel-item>
     <v-carousel-item
+
+    >
+      <v-img
+        class="ac mt-17"
+        lazy-src="../../assets/images/v-carousel-item-3.svg"
+        max-height="270"
+        max-width="250"
+        src="../../assets/images/v-carousel-item-3.svg"
+      ></v-img>
+
+      <div class="mt-2 ml-3 mr-3">
+        <h3 color="black" class="alg-txt-c">
+          Você tambem pode curtir e salvar todos os poemas que você viu e gostou
+        </h3>
+      </div>
+    </v-carousel-item>
+    <v-carousel-item
+
+    >
+      <v-img
+        class="ac mt-17"
+        lazy-src="../../assets/images/v-carousel-item-5.svg"
+        max-height="500"
+        max-width="250"
+        src="../../assets/images/v-carousel-item-5.svg"
+      ></v-img>
+
+      <div class="mt-2 ml-3 mr-3">
+        <h3 color="black" class="alg-txt-c">
+          Procure por poemas mais antigos, mais novos ou tambem os mais curtidos
+        </h3>
+      </div>
+    </v-carousel-item>
+    <v-carousel-item
+    >
+      <v-img
+      class="ac mt-20"
+        lazy-src="../../assets/images/black_logo.png"
+        max-height="400"
+        max-width="400"
+        src="../../assets/images/black_logo.png"
+      ></v-img>
+
+      <div class="mt-2 ml-3 mr-3">
+        <h3 color="black" class="alg-txt-c">
+          Tudo isso você encontra aqui, Faça seu cadastro e Poetize!
+        </h3>
+      </div>
+    </v-carousel-item>
+    <!-- <v-carousel-item
       reverse-transition="fade-transition"
       transition="fade-transition"
     >
       <v-img
-        lazy-src="../../images/teste5.svg"
+        lazy-src="../../assets/images/teste6.svg"
         max-height="250"
         max-width="250"
-        src="../../images/teste5.svg"
+        src="../../assets/images/teste6.svg"
       ></v-img>
     </v-carousel-item>
     <v-carousel-item
@@ -79,21 +124,10 @@
       transition="fade-transition"
     >
       <v-img
-        lazy-src="../../images/teste6.svg"
-        max-height="250"
-        max-width="250"
-        src="../../images/teste6.svg"
-      ></v-img>
-    </v-carousel-item>
-    <v-carousel-item
-      reverse-transition="fade-transition"
-      transition="fade-transition"
-    >
-      <v-img
-        lazy-src="../../images/teste7.svg"
+        lazy-src="../../assets/images/teste7.svg"
         max-height="200"
         max-width="250"
-        src="../../images/teste7.svg"
+        src="../../assets/images/teste7.svg"
       ></v-img>
     </v-carousel-item>
     <v-carousel-item
@@ -101,10 +135,10 @@
       transition="fade-transition"
     >
       <v-img
-        lazy-src="../../images/teste8.svg"
+        lazy-src="../../assets/images/teste8.svg"
         max-height="200"
         max-width="250"
-        src="../../images/teste8.svg"
+        src="../../assets/images/teste8.svg"
       ></v-img>
     </v-carousel-item>
     <v-carousel-item
@@ -112,37 +146,15 @@
       transition="fade-transition"
     >
       <v-img
-        lazy-src="../../images/teste9.svg"
+        lazy-src="../../assets/images/teste9.svg"
         max-height="200"
         max-width="250"
-        src="../../images/teste9.svg"
+        src="../../assets/images/teste9.svg"
       ></v-img>
-    </v-carousel-item>
+    </v-carousel-item> -->
   </v-carousel>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      items: [
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
-        },
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
-        },
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg",
-        },
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg",
-        },
-      ],
-    };
-  },
-};
-</script>
 <style>
 h3 {
   color: black;
