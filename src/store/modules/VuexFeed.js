@@ -13,7 +13,8 @@ export default {
             state.poems = data
         },
         deletePoem(state, data){
-            state.poems.splice(data, 1);
+            const index = state.poems.indexOf(data);
+            state.poems.splice(index, 1);
         },
         olderPoems(state){
             state.poems.reverse();

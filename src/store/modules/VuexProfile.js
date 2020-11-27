@@ -4,7 +4,7 @@ export default {
     namespaced: true,
     state: {
         user: '',
-        poems: '',
+        poems: [],
         likes: '',
         myLikes: [],
         // poemsLiked: []
@@ -23,7 +23,8 @@ export default {
             state.poems = data;
         },
         deletePoem(state, data) {
-            state.poems.splice(data, 1);
+            const index = state.poems.indexOf(data);
+            state.poems.splice(index, 1);
         },
         setMyLikes(state, data) {
             state.myLikes = data;

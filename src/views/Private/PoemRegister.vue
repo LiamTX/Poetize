@@ -3,7 +3,7 @@
     <!-- <NavBar /> -->
     <vs-row>
       <vs-row class="mt-20" justify="center" direction="column">
-        <vs-input dark placeholder="Titulo" v-model="poem.title"> </vs-input>
+        <vs-input dark placeholder="Titulo" v-model="poem.title" autocomplete="off"> </vs-input>
 
         <!-- <div class="ac">
           <v-textarea

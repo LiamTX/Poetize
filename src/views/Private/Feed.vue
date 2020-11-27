@@ -41,7 +41,7 @@ export default {
     ...mapMutations({
       deletePoem: "VuexFeed/deletePoem",
       olderPoems: "VuexFeed/olderPoems",
-      youngerPoems: "VuexFeed/youngerPoems"
+      youngerPoems: "VuexFeed/youngerPoems",
     }),
     ...mapActions({
       getPoems: "VuexFeed/getPoems",
@@ -59,6 +59,14 @@ export default {
     },
     async deleted(poem) {
       this.deletePoem(poem);
+
+      this.$vs.notification({
+        progress: "auto",
+        color: "success",
+        position: "top-center",
+        title: `Hey!`,
+        text: "Poema deletado com sucesso!",
+      });
     },
     older() {
       this.olderPoems();
@@ -71,7 +79,7 @@ export default {
     value: function (val) {
       if (val == 2) {
         this.olderPoems();
-      }else if(val == 1){
+      } else if (val == 1) {
         this.youngerPoems();
       }
     },

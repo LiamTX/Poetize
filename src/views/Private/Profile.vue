@@ -242,7 +242,7 @@ export default {
       new_password: "",
       confirm_password: "",
       poems: "",
-      poemsLiked: []
+      poemsLiked: [],
     };
   },
 
@@ -260,6 +260,14 @@ export default {
     }),
     async deleted(poem) {
       this.deletePoem(poem);
+
+      this.$vs.notification({
+        progress: "auto",
+        color: "success",
+        position: "top-center",
+        title: `Hey!`,
+        text: "Poema deletado com sucesso!",
+      });
     },
     async index() {
       const loading = this.$vs.loading({
@@ -273,7 +281,6 @@ export default {
       await this.getMyLikes();
 
       // console.log(this.myLikes)
-
 
       if (this.myLikes.length > 0) {
         for (let i = 0; i < this.myLikes.length; i++) {
@@ -392,9 +399,9 @@ export default {
     myLikes() {
       return this.$store.state.VuexProfile.myLikes;
     },
-      // poemsLiked() {
-      //   return this.$store.state.VuexProfile.poemsLiked;
-      // },
+    // poemsLiked() {
+    //   return this.$store.state.VuexProfile.poemsLiked;
+    // },
   },
 
   async created() {
