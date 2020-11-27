@@ -53,6 +53,11 @@ ou
 VUE_APP_BASE_URL=http://localhost:3333/api
 ```
 
+ou utilize a url de produção:
+```
+VUE_APP_BASE_URL=https://poetize-api.herokuapp.com/api
+```
+
 ### Iniciando o projeto
 Com todas as dependências instaladas e o ambiente configurado corretamente, agora você pode executar o aplicativo:
 ```
