@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import 'boxicons/css/boxicons.min.css'
 import './assets/index.scss'
+import 'boxicons/css/boxicons.min.css'
 import Vuesax from 'vuesax'
 import 'vuesax/dist/vuesax.css'
 import App from './App.vue'
