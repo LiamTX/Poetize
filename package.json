@@ -11,6 +11,8 @@
     "boxicons": "^2.0.5",
     "core-js": "^3.6.5",
     "dotenv": "^8.2.0",
+    "sass": "^1.29.0",
+    "sass-loader": "^10.1.0",
     "stylus": "^0.54.8",
     "stylus-loader": "^3",
     "vue": "^2.6.11",
