@@ -2,7 +2,7 @@ import axios from 'axios';
 
 axios.interceptors.request.use(
     config => {
-        config.headers.Authentication = `Bearer ${localStorage.token}`;
+        config.headers.Authorization = `Bearer ${localStorage.token}`;
         return config;
     },
     error => {
