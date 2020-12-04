@@ -120,6 +120,14 @@ a{
     width: 90%;
 }
 
+.input-outlined-black {
+    // width: 90%;
+    input{
+        display: block;
+        border: 1px solid black;
+    }
+}
+
 .flex{
     display: flex;
     flex-direction: column;
