@@ -274,16 +274,12 @@ export default {
       await this.getMyPoems();
       await this.getMyLikes();
 
-      // console.log(this.myLikes)
-
       if (this.myLikes.length > 0) {
         for (let i = 0; i < this.myLikes.length; i++) {
           let poem = await this.getPoemById(this.myLikes[i].poem_id);
           this.poemsLiked.push(poem.data);
         }
       }
-
-      // console.log(this.poemsLiked)
 
       this.src_avatar = this.$store.state.VuexProfile.user.avatar;
       this.user.avatar = this.$store.state.VuexProfile.user.avatar;
@@ -376,11 +372,22 @@ export default {
         this.loading = false;
         this.edit = false;
       } catch (error) {
-        const message = error.message;
+        //TODO validar caso o email exista
+        const error_response = error.response.data.error;
 
+        console.log(error)
+
+        if (error_response == "existing email") {
+          this.$vs.notification({
+            duration: "8000",
+            progress: "auto",
+            color: "danger",
+            position: "top-center",
+            title: `Ops!`,
+            text: "Este e-mail já esta sendo ultilizado, tente outro.",
+          });
+        }
         this.loading = false;
-
-        console.log(message);
 
         return;
       }

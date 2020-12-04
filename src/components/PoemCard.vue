@@ -185,7 +185,6 @@ export default {
   async created() {
     await this.getThisUser();
     await this.index();
-    // console.log(this.data.poem.split("\n"));
   },
   computed: {
     apiLoading() {

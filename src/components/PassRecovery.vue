@@ -126,15 +126,11 @@ export default {
           );
         }
 
-        // console.log(response)'
-
         this.active3 = false;
         this.active4 = true;
         this.loading = false;
       } catch (error) {
         const { status } = error.response;
-
-        console.log(error)
 
         if (status == 404) {
           this.$vs.notification({

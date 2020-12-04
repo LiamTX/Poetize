@@ -92,8 +92,6 @@ export default {
 
         const response = await this.auth(this.user);
 
-        console.log(response)
-
         await localStorage.setItem("token", response.data.token);
 
         this.$vs.notification({

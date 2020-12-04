@@ -144,10 +144,6 @@ export default {
       let fileName = files[0].name;
       this.imageData = event.target.files[0];
 
-      // files[0].size = 922534
-
-      console.log(files[0]);
-
       const fr = new FileReader();
       fr.addEventListener("load", () => {
         this.src_avatar = fr.result;

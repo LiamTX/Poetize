@@ -33,7 +33,6 @@ const routes = [
             // })
             next('/Feed');
           } catch (error) {
-            console.log(error)
             next();
           }
         },
