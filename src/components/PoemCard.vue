@@ -198,7 +198,7 @@ export default {
 };
 </script>
 
-<style lang="stylus" >
+<style lang="scss" >
 .this-card {
   max-width: 400px;
 
@@ -208,13 +208,13 @@ export default {
   }
 }
 
-getColor(vsColor, alpha = 1) {
-  unquote('rgba(var(--vs-' + vsColor + '), ' + alpha + ')');
-}
+// getColor(vsColor, alpha = 1) {
+//   unquote('rgba(var(--vs-' + vsColor + '), ' + alpha + ')');
+// }
 
-getVar(var) {
-  unquote('var(--vs-' + var + ')');
-}
+// getVar(var) {
+//   unquote('var(--vs-' + var + ')');
+// }
 
 .con-footer {
   display: flex;
