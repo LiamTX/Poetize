@@ -110,6 +110,10 @@ export default {
 
         this.faq.text = "";
         this.loading = false;
+
+        if (error.message == "Request failed with status code 401") {
+          this.$router.push("/Login");
+        }
       }
     },
   },

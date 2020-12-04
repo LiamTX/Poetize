@@ -47,15 +47,7 @@ export default {
       getPoems: "VuexFeed/getPoems",
     }),
     async index() {
-      const loading = this.$vs.loading({
-        text: "Loading...",
-        background: "dark",
-        color: "#fff",
-      });
-
       await this.getPoems();
-
-      loading.close();
     },
     async deleted(poem) {
       this.deletePoem(poem);
@@ -73,7 +65,22 @@ export default {
     },
   },
   async created() {
-    await this.index();
+    const loading = this.$vs.loading({
+      text: "Loading...",
+      background: "dark",
+      color: "#fff",
+    });
+
+    try {
+      await this.index();
+      loading.close();
+    } catch (error) {
+      loading.close();
+
+      if (error.message == "Request failed with status code 401") {
+        this.$router.push("/Login");
+      }
+    }
   },
   watch: {
     value: function (val) {

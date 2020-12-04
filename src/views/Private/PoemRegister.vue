@@ -3,7 +3,13 @@
     <!-- <NavBar /> -->
     <vs-row>
       <vs-row class="mt-20" justify="center" direction="column">
-        <vs-input dark placeholder="Titulo" v-model="poem.title" autocomplete="off"> </vs-input>
+        <vs-input
+          dark
+          placeholder="Titulo"
+          v-model="poem.title"
+          autocomplete="off"
+        >
+        </vs-input>
 
         <!-- <div class="ac">
           <v-textarea
@@ -78,38 +84,46 @@ export default {
       register: "VuexPoem/register",
     }),
     async sendForm() {
-      this.loading = true;
+      try {
+        this.loading = true;
 
-      const poem = await this.register(this.poem);
+        const poem = await this.register(this.poem);
 
-      if (poem.data.name == "SequelizeUniqueConstraintError") {
+        if (poem.data.name == "SequelizeUniqueConstraintError") {
+          this.$vs.notification({
+            progress: "auto",
+            color: "danger",
+            position: "top-center",
+            title: "Opa!",
+            text: "Já existe um poema com este titulo, tente outro...",
+          });
+
+          this.loading = false;
+
+          return;
+        }
+
         this.$vs.notification({
           progress: "auto",
-          color: "danger",
+          color: "success",
           position: "top-center",
-          title: "Opa!",
-          text: "Já existe um poema com este titulo, tente outro...",
+          title: "Heey, Você é um poeta!",
+          text: "O poema foi registrado com sucesso.",
         });
+
+        this.poem.title = "";
+        this.poem.poem = "";
 
         this.loading = false;
 
-        return;
+        this.$router.push("/Feed");
+      } catch (error) {
+        this.loading = false;
+
+        if (error.message == "Request failed with status code 401") {
+          this.$router.push("/Login");
+        }
       }
-
-      this.$vs.notification({
-        progress: "auto",
-        color: "success",
-        position: "top-center",
-        title: "Heey, Você é um poeta!",
-        text: "O poema foi registrado com sucesso.",
-      });
-
-      this.poem.title = "";
-      this.poem.poem = "";
-
-      this.loading = false;
-
-      this.$router.push('/Feed')
     },
   },
 };

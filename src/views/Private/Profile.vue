@@ -270,12 +270,6 @@ export default {
       });
     },
     async index() {
-      const loading = this.$vs.loading({
-        text: "Loading...",
-        background: "dark",
-        color: "#fff",
-      });
-
       await this.getThisUser();
       await this.getMyPoems();
       await this.getMyLikes();
@@ -297,8 +291,6 @@ export default {
       this.user.email = this.$store.state.VuexProfile.user.email;
 
       this.poems = this.$store.state.VuexProfile.poems;
-
-      loading.close();
     },
     onAvatarSelected(event) {
       const files = event.target.files;
@@ -405,7 +397,22 @@ export default {
   },
 
   async created() {
-    await this.index();
+    const loading = this.$vs.loading({
+      text: "Loading...",
+      background: "dark",
+      color: "#fff",
+    });
+
+    try {
+      await this.index();
+      loading.close();
+    } catch (error) {
+      loading.close();
+
+      if (error.message == "Request failed with status code 401") {
+        this.$router.push("/Login");
+      }
+    }
   },
 };
 </script>

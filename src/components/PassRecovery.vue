@@ -126,7 +126,7 @@ export default {
           );
         }
 
-        console.log(response)
+        // console.log(response)'
 
         this.active3 = false;
         this.active4 = true;
