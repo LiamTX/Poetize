@@ -29,25 +29,25 @@
         <img src="../assets/images/logo.png" alt="Poetize" class="cp">
         
       </template>
-      <vs-sidebar-item id="feed" to="/Feed">
+      <vs-sidebar-item :active="active == 'feed'" id="feed" to="/Feed">
         <template #icon>
           <i class="bx bx-home"></i>
         </template>
         Feed
       </vs-sidebar-item>
-      <vs-sidebar-item id="new_poem" to="/Poem">
+      <vs-sidebar-item :active="active == 'new_poem'" id="new_poem" to="/Poem">
         <template #icon>
           <i class="bx bx-book-add"></i>
         </template>
         Novo poema
       </vs-sidebar-item>
-      <vs-sidebar-item id="profile" to="/Profile">
+      <vs-sidebar-item :active="active == 'profile'" id="profile" to="/Profile">
         <template #icon>
           <i class="bx bxs-user"></i>
         </template>
         Perfil
       </vs-sidebar-item>
-      <vs-sidebar-item id="faq" to="/Help">
+      <vs-sidebar-item :active="active == 'faq'" id="faq" to="/Help">
         <template #icon>
           <i class="bx bx-info-circle"></i>
         </template>
@@ -180,6 +180,7 @@ export default {
 
   watch: {
     $route(to, from){
+      console.log("dsajdsaoidjsioajdiosajdioja")
       let path = to.path;
 
       if(path == '/Feed') this.active = 'feed';
@@ -201,9 +202,24 @@ export default {
       await localStorage.removeItem("token");
       this.$router.push("/Login");
     },
+
+    checkRouter(){
+      if(this.$route.fullPath == '/Feed')
+        this.active = 'feed'
+
+      else if(this.$route.fullPath == '/Poem')
+        this.active = 'new_poem'
+
+      else if(this.$route.fullPath == '/Profile')
+        this.active = 'profile'
+
+      else if(this.$route.fullPath == '/Help')
+        this.active = 'faq'
+    }
   },
   async created() {
     await this.index();
+    this.checkRouter()
   },
 };
 </script>
