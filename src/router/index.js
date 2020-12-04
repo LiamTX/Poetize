@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import axios from 'axios';
 
 Vue.use(VueRouter)
 
@@ -26,6 +27,16 @@ const routes = [
     ]
   },
   {
+    beforeEnter: async (to, from, next) => {
+      try {
+        await axios.get(process.env.VUE_APP_BASE_URL + '/users/auth/token');
+        next();
+      } catch (error) {
+        if (error.message == "Request failed with status code 401") {
+          next('/Login')
+        }
+      }
+    },
     path: '/Private',
     component: () => import('../views/ViewsPrivate.vue'),
     children: [

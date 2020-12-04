@@ -77,9 +77,9 @@ export default {
     } catch (error) {
       loading.close();
 
-      if (error.message == "Request failed with status code 401") {
-        this.$router.push("/Login");
-      }
+      // if (error.message == "Request failed with status code 401") {
+      //   this.$router.push("/Login");
+      // }
     }
   },
   watch: {
