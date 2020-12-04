@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import axios from 'axios';
+import axios from '../utils/axios';
 
 Vue.use(VueRouter)
 
@@ -11,6 +11,7 @@ const routes = [
     component: () => import('../views/Public/Home.vue')
   },
   {
+
     path: '/Public',
     component: () => import('../views/ViewsPublic.vue'),
     children: [
@@ -20,6 +21,22 @@ const routes = [
         component: () => import('../views/Public/Signup.vue')
       },
       {
+        beforeEnter: async (to, from, next) => {
+          try {
+            await axios.get(process.env.VUE_APP_BASE_URL + '/users/auth/token');
+            // Vuesax.$vs.notification({
+            //   progress: "auto",
+            //   color: "success",
+            //   position: "top-center",
+            //   title: "Hey!",
+            //   text: "Seja bem-vindo(a).",
+            // })
+            next('/Feed');
+          } catch (error) {
+            console.log(error)
+            next();
+          }
+        },
         path: '/Login',
         name: 'Login',
         component: () => import('../views/Public/Login.vue')
