@@ -27,7 +27,6 @@
     >
       <template #logo>
         <img src="../assets/images/logo.png" alt="Poetize" class="cp">
-        
       </template>
       <vs-sidebar-item id="feed" to="/Feed">
         <template #icon>
@@ -155,12 +154,14 @@
       </vs-sidebar-item> -->
       <template #footer>
         <vs-row justify="space-between">
-          <vs-avatar class="cp">
-            <template v-if="avatar == 0" icon>
-              <i class="bx bx-user"></i>
-            </template>
-            <img v-else :src="avatar" alt="avatar" />
-          </vs-avatar>
+          <div>
+            <vs-avatar color="white">
+              <template v-if="avatar == 0" icon>
+                <i class="bx bx-user"></i>
+              </template>
+              <img v-else :src="avatar" alt="">
+            </vs-avatar>
+          </div>
           <vs-button @click="logOff" danger class="">SAIR</vs-button>
         </vs-row>
       </template>
@@ -204,6 +205,7 @@ export default {
   },
   async created() {
     await this.index();
+    console.log(this.avatar)
   },
 };
 </script>

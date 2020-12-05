@@ -156,6 +156,7 @@
             Cancelar
           </vs-button>
         </vs-row>
+        <vs-button @click="logOff" danger class="ac button_">SAIR</vs-button>
       </vs-row>
     </vs-row>
     <v-divider class="mt-5 mb-5"></v-divider>
@@ -247,6 +248,10 @@ export default {
   },
 
   methods: {
+    async logOff() {
+      await localStorage.removeItem("token");
+      this.$router.push("/Login");
+    },
     ...mapMutations({
       deletePoem: "VuexProfile/deletePoem",
     }),
@@ -372,10 +377,9 @@ export default {
         this.loading = false;
         this.edit = false;
       } catch (error) {
-        //TODO validar caso o email exista
         const error_response = error.response.data.error;
 
-        console.log(error)
+        console.log(error);
 
         if (error_response == "existing email") {
           this.$vs.notification({

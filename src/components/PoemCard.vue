@@ -203,7 +203,6 @@ export default {
 
   @media screen and (max-width: 1210px) {
     max-width: 330px;
-
   }
 }
 
@@ -280,7 +279,7 @@ export default {
     font-size: 0.7rem;
 
     a {
-      color: getColor('primary') !important;
+      color: getColor("primary") !important;
       margin-left: 6px;
 
       &:hover {
