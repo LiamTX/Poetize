@@ -202,7 +202,7 @@ export default {
   max-width: 400px !important;
 
   @media screen and (max-width: 1210px) {
-    max-width: 330px;
+    max-width: 330px !important;
   }
 }
 

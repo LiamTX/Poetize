@@ -205,7 +205,6 @@ export default {
   },
   async created() {
     await this.index();
-    console.log(this.avatar)
   },
 };
 </script>

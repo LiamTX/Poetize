@@ -29,7 +29,7 @@
       <div class="mt-2 ml-3 mr-3">
         <h3 color="black" class="alg-txt-c">
           Se você é alguem que ama poemas, e adoraria poder compartilhar as suas
-          ideias ou simplismente gostaria apreciar poemas alheios...venha para o
+          ideias ou simplismente apreciar poemas alheios...venha para o
           poetize!
         </h3>
       </div>
@@ -53,8 +53,8 @@
 
       <div class="mt-2 ml-3 mr-3">
         <h3 color="black" class="alg-txt-c">
-          Aqui você pode compartilhar suas invenções para todos adoradores de
-          poemas
+          Aqui você pode compartilhar suas invenções para todos os adoradores de
+          poemas.
         </h3>
       </div>
     </v-carousel-item>
@@ -71,7 +71,7 @@
 
       <div class="mt-2 ml-3 mr-3">
         <h3 color="black" class="alg-txt-c">
-          Você tambem pode curtir e salvar todos os poemas que você viu e gostou
+          Você tambem pode curtir e salvar todos os poemas que viu e gostou.
         </h3>
       </div>
     </v-carousel-item>
@@ -88,7 +88,7 @@
 
       <div class="mt-2 ml-3 mr-3">
         <h3 color="black" class="alg-txt-c">
-          Procure por poemas mais antigos, mais novos ou tambem os mais curtidos
+          Procure por poemas mais antigos, mais novos ou tambem os mais curtidos.
         </h3>
       </div>
     </v-carousel-item>
@@ -104,7 +104,7 @@
 
       <div class="mt-2 ml-3 mr-3">
         <h3 color="black" class="alg-txt-c">
-          Tudo isso você encontra aqui, Faça seu cadastro e Poetize!
+          Tudo isso você encontra aqui, Faça seu cadastro e Poetize-se!
         </h3>
       </div>
     </v-carousel-item>

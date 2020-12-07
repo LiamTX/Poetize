@@ -190,7 +190,7 @@
       <div v-else class="mt-4">
         <h2 class="alg-txt-c">Você ainda não tem poemas cadastrados</h2>
         <vs-button to="/Poem" class="button ac" dark :active="active == 1"
-          >Cadastre novo um poema</vs-button
+          >Cadastre um novo poema</vs-button
         >
       </div>
     </div>
