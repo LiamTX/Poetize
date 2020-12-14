@@ -13,7 +13,7 @@ Email-me: liamcabral88@gmail.com
 
 Se conecte comigo no [LinkedIn](www.linkedin.com/in/liamcabralteixeira)
 
-Link do projeto em produção: [](https://poetize.netlify.app/#/)
+Link do projeto em produção: (https://poetize.netlify.app/#/)
 
 ## Getting Started
 ### Pré-requisitos
