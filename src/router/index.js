@@ -22,15 +22,15 @@ const routes = [
         component: () => import('../views/Public/Signup.vue')
       },
       {
-        // beforeEnter: async (to, from, next) => {
-        //   try {
-        //     await axios.get(process.env.VUE_APP_BASE_URL + '/users/auth/token');
+        beforeEnter: async (to, from, next) => {
+          try {
+            await axios.get(process.env.VUE_APP_BASE_URL + '/users/auth/token');
 
-        //     next('/Feed');
-        //   } catch (error) {
-        //     next();
-        //   }
-        // },
+            next('/Feed');
+          } catch (error) {
+            next();
+          }
+        },
         path: '/Login',
         name: 'Login',
         component: () => import('../views/Public/Login.vue')
