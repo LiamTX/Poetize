@@ -13,6 +13,8 @@ Email-me: liamcabral88@gmail.com
 
 Se conecte comigo no [LinkedIn](www.linkedin.com/in/liamcabralteixeira)
 
+Link do projeto em produção: (https://poetize.netlify.app/#/)
+
 ## Getting Started
 ### Pré-requisitos
 Para executar este projeto no modo de desenvolvimento, você precisara ter um ambiente basico para executar um web app Vue, que pode ser encontrado [aqui](https://vuejs.org/v2/guide/#Getting-Started) 
